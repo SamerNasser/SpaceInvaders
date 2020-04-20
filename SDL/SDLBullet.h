@@ -12,13 +12,13 @@ namespace SDL {
     class SDLBullet : public NONSDL::Bullet{
     public:
         // Constructor.
-        SDLBullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed, SDL::SDLWindow* win);
+        SDLBullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
         // Destructor.
         ~SDLBullet();
 
         // Make visible.
-        void visualize();
+        void visualize(NONSDL::Window* win);
 
         void disappear();
 

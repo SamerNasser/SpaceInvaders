@@ -4,9 +4,9 @@
 
 #include "SDLEnemy.h"
 
-SDL::SDLEnemy::SDLEnemy(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed, SDL::SDLWindow* win): NONSDL::Enemy(xPos, yPos, w, h, xSpeed, ySpeed)
+SDL::SDLEnemy::SDLEnemy(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed): NONSDL::Enemy(xPos, yPos, w, h, xSpeed, ySpeed)
 {
-    window = win;
+
 }
 
 SDL::SDLEnemy::~SDLEnemy()
@@ -14,9 +14,9 @@ SDL::SDLEnemy::~SDLEnemy()
 
 }
 
-void SDL::SDLEnemy::visualize()
+void SDL::SDLEnemy::visualize(NONSDL::Window* win)
 {
-    window->render(SpriteType::ENEMY, x,  y, width, height);
+    win->render(SpriteType::ENEMY, x,  y, width, height);
 }
 
 void SDL::SDLEnemy::switchDirection()

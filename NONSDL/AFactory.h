@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "Projectile.h"
 #include "Timer.h"
+#include "Window.h"
 
 namespace NONSDL {
     class AFactory {
@@ -32,9 +33,8 @@ namespace NONSDL {
 
         virtual Timer* createTimer() = 0;
 
-        virtual void clearWindow() = 0;
+        virtual Window* createWindow() = 0;
 
-        virtual void updateWindow() = 0;
     };
 }
 

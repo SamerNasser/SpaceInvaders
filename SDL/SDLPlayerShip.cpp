@@ -5,9 +5,9 @@
 #include "SDLPlayerShip.h"
 #include "../SDLConstants.h"
 
-SDL::SDLPlayerShip::SDLPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed, SDL::SDLWindow* win): NONSDL::PlayerShip(xPos, yPos, w, h, xSpeed, ySpeed)
+SDL::SDLPlayerShip::SDLPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed): NONSDL::PlayerShip(xPos, yPos, w, h, xSpeed, ySpeed)
 {
-    window = win;
+
 }
 
 SDL::SDLPlayerShip::~SDLPlayerShip()
@@ -15,7 +15,7 @@ SDL::SDLPlayerShip::~SDLPlayerShip()
 
 }
 
-void SDL::SDLPlayerShip::visualize()
+void SDL::SDLPlayerShip::visualize(NONSDL::Window* win)
 {
-    window->render(SDL::SpriteType::PLAYER, x,  y, width, height);
+    win->render(SDL::SpriteType::PLAYER, x,  y, width, height);
 }

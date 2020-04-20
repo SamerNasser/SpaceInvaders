@@ -55,8 +55,10 @@ void NONSDL::Game::run()
 
     int lives = 3;
 
+    // Create window.
+    Window* window = afact->createWindow();
     // Clear window.
-    afact->clearWindow();
+    window->clearWindow();
 
     // Make PlayerInput object
     PlayerInput* input = afact->createPlayerInput();
@@ -99,7 +101,9 @@ void NONSDL::Game::run()
                 gameState = PLAYING;
             }
 
+
             //RENDER START SCREEN
+
 
 
         }
@@ -218,26 +222,26 @@ void NONSDL::Game::run()
 
             // RENDER OBJECTS.
 
-            afact->clearWindow();
-            ps->visualize();
+            window->clearWindow();
+            ps->visualize(window);
             // When shooting, the bullet will be visualized.
             if (shooting) {
-                bul->visualize();
+                bul->visualize(window);
             }
 
             if (!pj.empty()) {
                 for (const auto &p: pj) {
-                    p->visualize();
+                    p->visualize(window);
                 }
             }
 
             if (!enemies.empty()) {
                 for (const auto &enemy: enemies) {
-                    enemy->visualize();
+                    enemy->visualize(window);
                 }
             }
 
-            afact->updateWindow();
+            window->updateWindow();
 
 
             while (t1->getDuration() < NONSDL::FRAMETIMEMS) {
@@ -263,6 +267,7 @@ void NONSDL::Game::run()
     }
     delete t1;
     delete t2;
+    delete window;
 
 
 

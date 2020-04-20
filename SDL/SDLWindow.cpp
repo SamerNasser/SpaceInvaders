@@ -4,7 +4,7 @@
 
 #include "SDLWindow.h"
 
-SDL::SDLWindow::SDLWindow()
+SDL::SDLWindow::SDLWindow(): NONSDL::Window()
 {
     if( !init() )
     {
@@ -118,7 +118,7 @@ bool SDL::SDLWindow::loadMedia()
     return success;
 }
 
-void SDL::SDLWindow::render(SpriteType type, float x, float y, float w, float h){
+void SDL::SDLWindow::render(int type, float x, float y, float w, float h){
 
 
     int realX = x*NONSDL::SCREEN_WIDTH;

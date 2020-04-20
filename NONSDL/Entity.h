@@ -5,6 +5,8 @@
 #ifndef SPACEINVADERSV2_ENTITY_H
 #define SPACEINVADERSV2_ENTITY_H
 
+#include "Window.h"
+
 namespace NONSDL {
     class Entity {
     public:
@@ -43,7 +45,7 @@ namespace NONSDL {
 
 
         //Methods
-        virtual void visualize() = 0;
+        virtual void visualize(Window* win) = 0;
 
         //static bool collisionDetection(Entity *);
 

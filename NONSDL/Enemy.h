@@ -24,7 +24,7 @@ namespace NONSDL {
         //Enemy &operator=(const Enemy &c);
 
         //make visible
-        virtual void visualize() = 0;
+        virtual void visualize(Window* win) = 0;
 
         virtual void switchDirection() = 0;
 

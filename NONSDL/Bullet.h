@@ -23,7 +23,7 @@ namespace NONSDL {
         //Bullet &operator=(const Bullet &c);
 
         //make visible
-        virtual void visualize() = 0;
+        virtual void visualize(Window* win) = 0;
 
         virtual void disappear() = 0;
     };

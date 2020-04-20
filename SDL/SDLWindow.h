@@ -11,9 +11,10 @@
 #include <string>
 #include "SDLTexture.h"
 #include "../SDLConstants.h"
+#include "../NONSDL/Window.h"
 
 namespace SDL {
-class SDLWindow{
+class SDLWindow : public NONSDL::Window{
     public:
         //Constructor
         SDLWindow();
@@ -28,7 +29,7 @@ class SDLWindow{
         bool loadMedia();
 
         //render
-        void render(SpriteType type, float x, float y, float w, float h);
+        void render(int type, float x, float y, float w, float h);
 
         //Frees media and shuts down SDL
         void close();

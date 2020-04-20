@@ -11,13 +11,13 @@ namespace SDL {
     class SDLPlayerShip : public NONSDL::PlayerShip{
     public:
         //constructor
-        SDLPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed, SDL::SDLWindow* win);
+        SDLPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
         //destructor
         ~SDLPlayerShip();
 
         //make visible
-        void visualize();
+        void visualize(NONSDL::Window* win);
 
     private:
         SDLWindow* window;

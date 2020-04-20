@@ -32,13 +32,7 @@ namespace SDL {
 
         NONSDL::Timer* createTimer();
 
-        void clearWindow();
-
-        void updateWindow();
-
-    private:
-        SDLWindow* window;
-
+        NONSDL::Window* createWindow();
 
     };
 }

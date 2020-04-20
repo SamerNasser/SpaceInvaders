@@ -17,7 +17,7 @@ namespace NONSDL {
         virtual ~EnemyEntity();
 
         //make visible
-        virtual void visualize() = 0;
+        virtual void visualize(Window* win) = 0;
     };
 }
 

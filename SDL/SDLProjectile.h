@@ -13,13 +13,13 @@ namespace SDL {
     class SDLProjectile : public NONSDL::Projectile{
     public:
         // Constructor.
-        SDLProjectile(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed, SDL::SDLWindow* win);
+        SDLProjectile(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
         // Destructor.
         ~SDLProjectile();
 
         // Make visible.
-        void visualize();
+        void visualize(NONSDL::Window* win);
 
     private:
         SDLWindow* window;

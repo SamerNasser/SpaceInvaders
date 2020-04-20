@@ -24,7 +24,7 @@ namespace NONSDL {
         //Projectile &operator=(const Projectile &c);
 
         //make visible
-        virtual void visualize() = 0;
+        virtual void visualize(Window* win) = 0;
     };
 }
 

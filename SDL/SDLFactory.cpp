@@ -13,18 +13,17 @@
 
 SDL::SDLFactory::SDLFactory()
 {
-    window = new SDLWindow();
+
 }
 
 SDL::SDLFactory::~SDLFactory()
 {
-    printf("Window is being deleted \n");
-    delete window;
+
 }
 
 NONSDL::PlayerShip* SDL::SDLFactory::createPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
 {
-    return new SDL::SDLPlayerShip(xPos, yPos, w, h, xSpeed, ySpeed, window);
+    return new SDL::SDLPlayerShip(xPos, yPos, w, h, xSpeed, ySpeed);
 }
 
 NONSDL::PlayerInput* SDL::SDLFactory::createPlayerInput()
@@ -34,17 +33,17 @@ NONSDL::PlayerInput* SDL::SDLFactory::createPlayerInput()
 
 NONSDL::Bullet* SDL::SDLFactory::createBullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
 {
-    return new SDL::SDLBullet(xPos, yPos, w, h, xSpeed, ySpeed, window);
+    return new SDL::SDLBullet(xPos, yPos, w, h, xSpeed, ySpeed);
 }
 
 NONSDL::Enemy* SDL::SDLFactory::createEnemy(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
 {
-    return new SDL::SDLEnemy(xPos, yPos, w, h, xSpeed, ySpeed, window);
+    return new SDL::SDLEnemy(xPos, yPos, w, h, xSpeed, ySpeed);
 }
 
 NONSDL::Projectile* SDL::SDLFactory::createProjectile(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
 {
-    return new SDL::SDLProjectile(xPos, yPos, w, h, xSpeed, ySpeed, window);
+    return new SDL::SDLProjectile(xPos, yPos, w, h, xSpeed, ySpeed);
 }
 
 NONSDL::Timer* SDL::SDLFactory::createTimer()
@@ -52,12 +51,9 @@ NONSDL::Timer* SDL::SDLFactory::createTimer()
     return new SDL::SDLTimer();
 }
 
-void SDL::SDLFactory::clearWindow()
+NONSDL::Window* SDL::SDLFactory::createWindow()
 {
-    window->clearWindow();
+    return new SDL::SDLWindow();
 }
 
-void SDL::SDLFactory::updateWindow()
-{
-    window->updateWindow();
-}
+

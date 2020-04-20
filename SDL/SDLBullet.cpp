@@ -4,9 +4,9 @@
 
 #include "SDLBullet.h"
 
-SDL::SDLBullet::SDLBullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed, SDL::SDLWindow* win): NONSDL::Bullet(xPos, yPos, w, h, xSpeed, ySpeed)
+SDL::SDLBullet::SDLBullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed): NONSDL::Bullet(xPos, yPos, w, h, xSpeed, ySpeed)
 {
-    window = win;
+
 }
 
 SDL::SDLBullet::~SDLBullet()
@@ -14,9 +14,9 @@ SDL::SDLBullet::~SDLBullet()
 
 }
 
-void SDL::SDLBullet::visualize()
+void SDL::SDLBullet::visualize(NONSDL::Window* win)
 {
-    window->render(SDL::SpriteType::BULLET, x,  y, width, height);
+    win->render(SDL::SpriteType::BULLET, x,  y, width, height);
 }
 
 void SDL::SDLBullet::disappear()
