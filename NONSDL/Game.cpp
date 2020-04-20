@@ -73,7 +73,7 @@ void NONSDL::Game::run()
     // Make timer for projectiles
     Timer* t2 = afact->createTimer();
 
-    
+
     // Create enemies.
     for (int i = 0; i <= NONSDL::NUMBEROFCOLUMNS - 1; i++){
         for (int j = 0; j <= NONSDL::NUMBEROFROWS - 1; j++){
