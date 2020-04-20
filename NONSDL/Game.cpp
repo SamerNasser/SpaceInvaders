@@ -90,7 +90,7 @@ void NONSDL::Game::run()
 
     // While application is running.
     while( running ) {
-        while(gameState == START){
+        while(gameState == START){          // Press space bar to start the game.
 
             // HANDLE USER INPUT
 
@@ -113,6 +113,7 @@ void NONSDL::Game::run()
             int temp = input->CheckInput();
             //printf("%d", temp);
             if (temp == 0) {
+                gameState = END;
                 running = false;
             } else if (temp == 1) {
                 ps->setXSpeed(-1 * 0.015);
@@ -196,7 +197,7 @@ void NONSDL::Game::run()
                 } else pIt++;
             }
             if (lives < 1) {
-                running = false;
+                gameState = END;
             }
 
             // Collisions of enemies.
@@ -241,6 +242,13 @@ void NONSDL::Game::run()
 
             while (t1->getDuration() < NONSDL::FRAMETIMEMS) {
                 // Wait.
+            }
+        }
+
+        if(gameState == END){               // Press space bar to leave the game.
+            int temp = input->CheckInput();
+            if (temp == 3) {
+                running = false;
             }
         }
     }
