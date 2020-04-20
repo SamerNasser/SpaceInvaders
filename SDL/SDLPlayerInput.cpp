@@ -45,6 +45,10 @@ int SDL::SDLPlayerInput::CheckInput()
                     input = 3;
                     return input;
 
+                case SDLK_ESCAPE:
+                    input = 4;
+                    return input;
+
                 default:
                     return input;
             }

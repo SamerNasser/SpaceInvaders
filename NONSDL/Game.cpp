@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include "../GameConstants.h"
+#include "../SDLConstants.h"
 
 NONSDL::Game* NONSDL::Game::game = nullptr;
 
@@ -37,9 +38,11 @@ void NONSDL::Game::run()
     // Main loop flag.
     bool running = true;
 
-    GameState gameState = START;
-
     bool shooting = false;
+
+    bool win = false;
+
+    GameState gameState = START;
 
     std::vector<Enemy*> enemies;
 
@@ -97,13 +100,21 @@ void NONSDL::Game::run()
             // HANDLE USER INPUT
 
             int temp = input->CheckInput();
-            if (temp == 3) {
+            if (temp == 0) {
+                gameState = END;
+                running = false;
+            }
+            else if (temp == 3) {
                 gameState = PLAYING;
             }
 
 
             //RENDER START SCREEN
 
+            window->clearWindow();
+            window->render(SDL::STARTSCREEN, 0.25, 0.15, 0.5, 0.5); // NOG AANPASSEN
+            window->render(SDL::STARTTEXT, 0.3, 0.75, 0.4, 0.05);
+            window->updateWindow();
 
 
         }
@@ -194,6 +205,7 @@ void NONSDL::Game::run()
             while (pIt != pj.end()) {
                 if (((*pIt)->getY() > 1) || ((*pIt)->collision(ps))) {
                     if ((*pIt)->collision(ps)) {
+                        ps->setX(NONSDL::PLAYERX);
                         lives--;
                     }
                     delete (*pIt);
@@ -202,6 +214,7 @@ void NONSDL::Game::run()
             }
             if (lives < 1) {
                 gameState = END;
+                win = false;
             }
 
             // Collisions of enemies.
@@ -215,7 +228,8 @@ void NONSDL::Game::run()
                 } else eIt++;
             }
             if (enemies.empty()) {
-                running = false;
+                gameState = END;
+                win = true;
             }
 
 
@@ -249,11 +263,25 @@ void NONSDL::Game::run()
             }
         }
 
-        if(gameState == END){               // Press space bar to leave the game.
-            int temp = input->CheckInput();
-            if (temp == 3) {
+        while(running && gameState == END){
+
+            // CHECK INPUT
+
+            int temp = input->CheckInput();     // Press space bar to leave the game.
+            if (temp == 0) {
                 running = false;
             }
+            else if (temp == 4) {
+                running = false;
+            }
+
+            // RENDER
+            window->clearWindow();
+            if(win)
+            window->render(SDL::WINNERSCREEN, 0.25, 0.15, 0.5, 0.3);
+            else window->render(SDL::LOSERSCREEN, 0.25, 0.15, 0.5, 0.5);
+            window->render(SDL::ENDTEXT, 0.33, 0.68, 0.35, 0.035);
+            window->updateWindow();
         }
     }
 

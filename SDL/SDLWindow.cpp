@@ -113,6 +113,36 @@ bool SDL::SDLWindow::loadMedia()
         gSpriteClips[ PROJECTILE ].y = 316;
         gSpriteClips[ PROJECTILE ].w = 4;
         gSpriteClips[ PROJECTILE ].h = 13;
+
+        // Set start screen sprite.
+        gSpriteClips[ STARTSCREEN ].x = 38;
+        gSpriteClips[ STARTSCREEN ].y = 60;
+        gSpriteClips[ STARTSCREEN ].w = 456;
+        gSpriteClips[ STARTSCREEN ].h = 190;
+
+        // Set end screen sprite.
+        gSpriteClips[ WINNERSCREEN ].x = 65;
+        gSpriteClips[ WINNERSCREEN ].y = 295;
+        gSpriteClips[ WINNERSCREEN ].w = 424;
+        gSpriteClips[ WINNERSCREEN ].h = 60;
+
+        // Set start text sprite.
+        gSpriteClips[ STARTTEXT ].x = 572;
+        gSpriteClips[ STARTTEXT ].y = 95;
+        gSpriteClips[ STARTTEXT ].w = 311;
+        gSpriteClips[ STARTTEXT ].h = 25;
+
+        // Set losing screen sprite.
+        gSpriteClips[ LOSERSCREEN ].x = 96;
+        gSpriteClips[ LOSERSCREEN ].y = 476;
+        gSpriteClips[ LOSERSCREEN ].w = 261;
+        gSpriteClips[ LOSERSCREEN ].h = 59;
+
+        // Set end text sprite.
+        gSpriteClips[ ENDTEXT ].x = 563;
+        gSpriteClips[ ENDTEXT ].y = 500;
+        gSpriteClips[ ENDTEXT ].w = 311;
+        gSpriteClips[ ENDTEXT ].h = 25;
     }
 
     return success;

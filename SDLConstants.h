@@ -10,7 +10,12 @@ namespace SDL {
         PLAYER,
         ENEMY,
         BULLET,
-        PROJECTILE
+        PROJECTILE,
+        STARTSCREEN,
+        WINNERSCREEN,
+        LOSERSCREEN,
+        STARTTEXT,
+        ENDTEXT,
     };
 }
 

@@ -59,6 +59,7 @@ namespace NONSDL {
         PLAYING,
         END
     };
+
 }
 
 #endif //SPACEINVADERSV2_GAMECONSTANTS_H
