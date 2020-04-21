@@ -5,10 +5,10 @@
 #ifndef SPACEINVADERSV2_BULLET_H
 #define SPACEINVADERSV2_BULLET_H
 
-#include "PlayerEntity.h"
+#include "Entity.h"
 
 namespace NONSDL {
-    class Bullet : public PlayerEntity {
+    class Bullet : public Entity {
     public:
         //constructor
         Bullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);

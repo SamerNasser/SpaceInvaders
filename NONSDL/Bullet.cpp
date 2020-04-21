@@ -4,7 +4,7 @@
 
 #include "Bullet.h"
 
-NONSDL::Bullet::Bullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed): PlayerEntity(xPos, yPos, w, h, xSpeed, ySpeed)
+NONSDL::Bullet::Bullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed): Entity(xPos, yPos, w, h, xSpeed, ySpeed)
 {
 
 }

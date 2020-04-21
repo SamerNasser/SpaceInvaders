@@ -4,10 +4,10 @@
 
 #ifndef SPACEINVADERSV2_PLAYERSHIP_H
 #define SPACEINVADERSV2_PLAYERSHIP_H
-#include "PlayerEntity.h"
+#include "Entity.h"
 
 namespace NONSDL {
-    class PlayerShip : public PlayerEntity {
+    class PlayerShip : public Entity {
     public:
         //constructor
         PlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);

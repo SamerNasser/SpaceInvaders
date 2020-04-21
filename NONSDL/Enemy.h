@@ -6,10 +6,10 @@
 #define SPACEINVADERSV2_ENEMY_H
 
 
-#include "EnemyEntity.h"
+#include "Entity.h"
 
 namespace NONSDL {
-    class Enemy : public EnemyEntity {
+    class Enemy : public Entity {
     public:
         //constructor
         Enemy(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);

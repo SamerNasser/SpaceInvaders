@@ -113,8 +113,8 @@ void NONSDL::Game::run()
             //RENDER START SCREEN
 
             window->clearWindow();
-            window->render(SDL::STARTSCREEN, 0.25, 0.15, 0.5, 0.5); // NOG AANPASSEN
-            window->render(SDL::STARTTEXT, 0.3, 0.75, 0.4, 0.05);
+            window->render(4, 0.25, 0.15, 0.5, 0.5); // NOG AANPASSEN
+            window->render(7, 0.3, 0.75, 0.4, 0.05);
             window->updateWindow();
 
 
@@ -257,7 +257,7 @@ void NONSDL::Game::run()
             }
 
             for(int i = 0; i < lives; i++){
-                window->render(SDL::LIFE, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
+                window->render(9, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
             }
 
             window->updateWindow();
@@ -284,9 +284,9 @@ void NONSDL::Game::run()
             // RENDER SCREENS.
             window->clearWindow();
             if(win)
-            window->render(SDL::WINNERSCREEN, 0.25, 0.15, 0.5, 0.3);
-            else window->render(SDL::LOSERSCREEN, 0.25, 0.15, 0.5, 0.5);
-            window->render(SDL::ENDTEXT, 0.33, 0.68, 0.35, 0.035);
+            window->render(5, 0.25, 0.15, 0.5, 0.3);
+            else window->render(6, 0.25, 0.15, 0.5, 0.5);
+            window->render(8, 0.33, 0.68, 0.35, 0.035);
             window->updateWindow();
         }
     }
