@@ -60,6 +60,7 @@ void NONSDL::Game::run()
 
     // Create window.
     Window* window = afact->createWindow();
+
     // Clear window.
     window->clearWindow();
 
@@ -81,7 +82,7 @@ void NONSDL::Game::run()
 
     // Create enemies.
     for (int i = 0; i <= NONSDL::NUMBEROFCOLUMNS - 1; i++){
-        for (int j = 0; j <= NONSDL::NUMBEROFROWS - 1; j++){
+        for (int j = 2; j <= NONSDL::NUMBEROFROWS + 1; j++){
         enemies.push_back(afact->createEnemy(((i*(NONSDL::ENEMYWIDTH + 0.01))), ((j*(NONSDL::ENEMYHEIGHT + 0.01)) + 0.02), NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT, NONSDL::ENEMYXSPEED, NONSDL::ENEMYYSPEED ));
         }
     }
@@ -255,6 +256,10 @@ void NONSDL::Game::run()
                 }
             }
 
+            for(int i = 0; i < lives; i++){
+                window->render(SDL::LIFE, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
+            }
+
             window->updateWindow();
 
 
@@ -275,7 +280,8 @@ void NONSDL::Game::run()
                 running = false;
             }
 
-            // RENDER
+
+            // RENDER SCREENS.
             window->clearWindow();
             if(win)
             window->render(SDL::WINNERSCREEN, 0.25, 0.15, 0.5, 0.3);

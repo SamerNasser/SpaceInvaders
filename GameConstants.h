@@ -54,6 +54,9 @@ namespace NONSDL {
     // Number of milliseconds between enemies shooting.
     const unsigned int SHOOTTIME = 500;
 
+    // Number of milliseconds between bonuses.
+
+
     enum GameState{
         START,
         PLAYING,

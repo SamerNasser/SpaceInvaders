@@ -143,6 +143,12 @@ bool SDL::SDLWindow::loadMedia()
         gSpriteClips[ ENDTEXT ].y = 500;
         gSpriteClips[ ENDTEXT ].w = 311;
         gSpriteClips[ ENDTEXT ].h = 25;
+
+        // Set lives sprite.
+        gSpriteClips[ LIFE ].x = 512;
+        gSpriteClips[ LIFE ].y = 65;
+        gSpriteClips[ LIFE ].w = 36;
+        gSpriteClips[ LIFE ].h = 29;
     }
 
     return success;

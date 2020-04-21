@@ -16,6 +16,7 @@ namespace SDL {
         LOSERSCREEN,
         STARTTEXT,
         ENDTEXT,
+        LIFE
     };
 }
 
