@@ -12,6 +12,8 @@
 #include "Projectile.h"
 #include "Timer.h"
 #include "Window.h"
+#include "NBonus.h"
+#include "PBonus.h"
 
 namespace NONSDL {
     class AFactory {
@@ -30,6 +32,10 @@ namespace NONSDL {
         virtual Enemy* createEnemy(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
 
         virtual Projectile* createProjectile(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
+
+        virtual PBonus* createPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
+
+        virtual NBonus* createNBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
 
         virtual Timer* createTimer() = 0;
 

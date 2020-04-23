@@ -42,6 +42,14 @@ namespace NONSDL {
     const float PROJECTILEXSPEED = 0;
     const float PROJECTILEYSPEED = 0.008;
 
+    // Initial values for PBonus.
+    const float BONUSX = 0;
+    const float BONUSY = 0;
+    const float BONUSWIDTH = 0.04;
+    const float BONUSHEIGHT = 0.04;
+    const float BONUSXSPEED = 0;
+    const float BONUSYSPEED = 0.003;
+
     // Number of enemy rows.
     const int NUMBEROFROWS = 3;
 
@@ -51,11 +59,11 @@ namespace NONSDL {
     // Number of milliseconds for 1 frame for 60 fps.
     const unsigned long FRAMETIMEMS = 17;
 
-    // Number of milliseconds between enemies shooting.
-    const unsigned int SHOOTTIME = 500;
-
     // Number of milliseconds between bonuses.
     const unsigned int BONUSTIME = 10000;
+
+    // Number of milliseconds a bonus will be active.
+    const unsigned int BONUSACTIONTIME = 5000;
 
     enum GameState{
         START,

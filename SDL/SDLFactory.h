@@ -30,6 +30,10 @@ namespace SDL {
 
         NONSDL::Projectile* createProjectile(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
+        NONSDL::PBonus* createPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
+
+        NONSDL::NBonus* createNBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
+
         NONSDL::Timer* createTimer();
 
         NONSDL::Window* createWindow();

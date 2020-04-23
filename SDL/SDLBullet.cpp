@@ -21,6 +21,6 @@ void SDL::SDLBullet::visualize(NONSDL::Window* win)
 
 void SDL::SDLBullet::disappear()
 {
-    x = NONSDL::SCREEN_WIDTH;
-    y = NONSDL::SCREEN_HEIGHT;
+    x = 1;
+    y = 1;
 }

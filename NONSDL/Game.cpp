@@ -3,11 +3,9 @@
 //
 
 #include "Game.h"
-#include <stdio.h>
 #include <iostream>
 #include <vector>
 #include "../GameConstants.h"
-#include "../SDLConstants.h"
 
 NONSDL::Game* NONSDL::Game::game = nullptr;
 
@@ -42,21 +40,24 @@ void NONSDL::Game::run()
 
     bool win = false;
 
+    bool bonusVisible = false;
+
     GameState gameState = START;
 
     std::vector<Enemy*> enemies;
 
     std::vector<Projectile*> pj;
 
-    Enemy* leftEnemy;
-
-    Enemy* rightEnemy;
+    BonusEntity* bonus;
 
     int maxLeftPos = 2;
 
     int maxRightPos = -1;
 
     int lives = 3;
+
+    // Number of milliseconds between enemies shooting.
+    unsigned int shootTime = 500;
 
     // Create window.
     Window* window = afact->createWindow();
@@ -73,11 +74,23 @@ void NONSDL::Game::run()
     // Make bullet.
     Bullet* bul = afact->createBullet(NONSDL::BULLETX, NONSDL::BULLETY, NONSDL::BULLETWIDTH, NONSDL::BULLETHEIGHT, NONSDL::BULLETXSPEED, NONSDL::BULLETYSPEED);
 
+    //PBonus* pBonus = afact->createPBonus(1, 1, NONSDL::PBONUSWIDTH,
+    //                                     NONSDL::PBONUSHEIGHT, NONSDL::PBONUSXSPEED, NONSDL::PBONUSYSPEED);
+
+    //NBonus* nBonus = afact->createNBonus(1, 1, NONSDL::NBONUSWIDTH,
+    //                                     NONSDL::NBONUSHEIGHT, NONSDL::NBONUSXSPEED, NONSDL::NBONUSYSPEED);
+
     // Make timer for frames.
     Timer* t1 = afact->createTimer();
 
     // Make timer for projectiles
     Timer* t2 = afact->createTimer();
+
+    // Make timer for bonus spawning.
+    Timer* t3 = afact->createTimer();
+
+    // Make timer for Bonus active time.
+    Timer* t4 = afact->createTimer();
 
 
     // Create enemies.
@@ -90,8 +103,14 @@ void NONSDL::Game::run()
     // Random number used for enemy shooting.
     int r = rand() % enemies.size();
 
+    // Random number used for bonus.
+    int ran;
+
     // Start timer for projectiles.
     t2->start();
+
+    // Start timer for bonus spawning.
+    t3->start();
 
 
     // While application is running.
@@ -127,7 +146,6 @@ void NONSDL::Game::run()
             // HANDLE USER INPUT.
 
             int temp = input->CheckInput();
-            //printf("%d", temp);
             if (temp == 0) {
                 gameState = END;
                 running = false;
@@ -161,7 +179,7 @@ void NONSDL::Game::run()
                 bul->setYSpeed(0);
             }
             // Move projectiles.
-            if (t2->getDuration() > (NONSDL::SHOOTTIME)) {
+            if (t2->getDuration() > shootTime) {
                 r = rand() % enemies.size();
                 pj.push_back(afact->createProjectile(((enemies[r]->getX()) + (NONSDL::ENEMYWIDTH / 2)),
                                                      ((enemies[r]->getY()) + NONSDL::ENEMYHEIGHT),
@@ -169,6 +187,40 @@ void NONSDL::Game::run()
                                                      NONSDL::PROJECTILEXSPEED, NONSDL::PROJECTILEYSPEED));
                 t2->start();
             }
+
+            // Move bonus
+            if (t3->getDuration() > NONSDL::BONUSTIME) {
+                ran = rand() % 95;
+                if (ran % 2 == 0) {
+                    bonus = afact->createPBonus(((float) ran / 100) + 0.05, NONSDL::BONUSY, NONSDL::BONUSWIDTH,
+                                                NONSDL::BONUSHEIGHT, NONSDL::BONUSXSPEED, NONSDL::BONUSYSPEED);
+                    //pBonus->setX(((float) r / 100) + 0.05);
+                    //pBonus->setY(NONSDL::PBONUSY);
+                    bonusVisible = true;
+                } else {
+                    bonus = afact->createNBonus(((float) ran / 100) + 0.05, NONSDL::BONUSY, NONSDL::BONUSWIDTH,
+                                                NONSDL::BONUSHEIGHT, NONSDL::BONUSXSPEED, NONSDL::BONUSYSPEED);
+                    //nBonus->setX(((float) r / 100) + 0.05);
+                    //nBonus->setY(NONSDL::NBONUSY);
+                    bonusVisible = true;
+                }
+                t3->start();
+            }
+
+            // Bonus position is updated.
+            if (bonusVisible) {
+                bonus->updatePosition();
+                //pBonus->updatePosition();
+                //nBonus->updatePosition();
+            }
+
+
+            if (t4->getDuration() > NONSDL::BONUSACTIONTIME){
+                shootTime = 500;
+                t2->start();
+                t4->start();
+            }
+
             for (const auto &p: pj) {
                 p->updatePosition();
             }
@@ -233,12 +285,34 @@ void NONSDL::Game::run()
                 win = true;
             }
 
+            if(bonusVisible) {
+                if (bonus->getY() > 1 || (bonus->collision(ps))) {
+                    if (bonus->collision(ps)) {
+                        if (ran % 2 == 0) {
+                            shootTime = 1500;
+                            t2->start();
+                        } else{
+                            shootTime = 250;
+                            t2->start();
+                        }
+
+                    }
+                    t4->start();
+                    bonusVisible = false;
+                    delete bonus;
+                }
+            }
+
 
 
             // RENDER OBJECTS.
 
             window->clearWindow();
             ps->visualize(window);
+            // Bonus will be visualized.
+            if (bonusVisible) {
+                bonus->visualize(window);
+            }
             // When shooting, the bullet will be visualized.
             if (shooting) {
                 bul->visualize(window);
@@ -301,6 +375,8 @@ void NONSDL::Game::run()
     }
     delete t1;
     delete t2;
+    delete t3;
+    delete t4;
     delete window;
 
 

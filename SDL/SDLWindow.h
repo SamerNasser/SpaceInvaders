@@ -43,7 +43,7 @@ class SDLWindow : public NONSDL::Window{
         SDL_Window *gWindow = nullptr;
 
         //Scene sprites
-        SDL_Rect gSpriteClips[10];
+        SDL_Rect gSpriteClips[12];
         SDLTexture* gSpriteSheetTexture;
 
         //The window renderer
