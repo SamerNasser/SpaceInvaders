@@ -26,5 +26,5 @@ void SDL::SDLEnemy::switchDirection()
 
 void SDL::SDLEnemy::shiftDown()
 {
-    setY((getY()) + (NONSDL::ENEMYHEIGHT/2));
+    setY((getY()) + (NONSDL::ENEMYHEIGHT*0.75));
 }

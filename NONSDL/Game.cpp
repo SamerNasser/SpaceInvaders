@@ -115,10 +115,14 @@ void NONSDL::Game::run()
 
     // While application is running.
     while( running ) {
-        while(gameState == START){          // Press space bar to start the game.
 
-            // HANDLE USER INPUT
+//=====================================================================================================================
 
+        while(gameState == START){
+
+            // HANDLE USER INPUT---------------------------------------------------------------------------------------
+
+            // Press space bar to start the game.
             int temp = input->CheckInput();
             if (temp == 0) {
                 gameState = END;
@@ -129,7 +133,7 @@ void NONSDL::Game::run()
             }
 
 
-            //RENDER START SCREEN
+            //RENDER START SCREEN--------------------------------------------------------------------------------------
 
             window->clearWindow();
             window->render(4, 0.25, 0.15, 0.5, 0.5); // NOG AANPASSEN
@@ -138,12 +142,15 @@ void NONSDL::Game::run()
 
 
         }
+
+//=====================================================================================================================
+
         while (gameState == PLAYING) {
 
             // Start timer for frames.
             t1->start();
 
-            // HANDLE USER INPUT.
+            // HANDLE USER INPUT.--------------------------------------------------------------------------------------
 
             int temp = input->CheckInput();
             if (temp == 0) {
@@ -165,19 +172,22 @@ void NONSDL::Game::run()
             }
 
 
-            // UPDATE POSITIONS.
+            // UPDATE POSITIONS.---------------------------------------------------------------------------------------
 
             // Playership's position is updated.
             ps->updatePosition();
+
             // When shooting, the bullet's position is updated.
             if (shooting) {
                 bul->updatePosition();
             }
+
             // Bullet stops moving when it crosses the top of the screen.
             if (bul->getY() <= 0) {
                 shooting = false;
                 bul->setYSpeed(0);
             }
+
             // Move projectiles.
             if (t2->getDuration() > shootTime) {
                 r = rand() % enemies.size();
@@ -194,40 +204,37 @@ void NONSDL::Game::run()
                 if (ran % 2 == 0) {
                     bonus = afact->createPBonus(((float) ran / 100) + 0.05, NONSDL::BONUSY, NONSDL::BONUSWIDTH,
                                                 NONSDL::BONUSHEIGHT, NONSDL::BONUSXSPEED, NONSDL::BONUSYSPEED);
-                    //pBonus->setX(((float) r / 100) + 0.05);
-                    //pBonus->setY(NONSDL::PBONUSY);
                     bonusVisible = true;
                 } else {
                     bonus = afact->createNBonus(((float) ran / 100) + 0.05, NONSDL::BONUSY, NONSDL::BONUSWIDTH,
                                                 NONSDL::BONUSHEIGHT, NONSDL::BONUSXSPEED, NONSDL::BONUSYSPEED);
-                    //nBonus->setX(((float) r / 100) + 0.05);
-                    //nBonus->setY(NONSDL::NBONUSY);
                     bonusVisible = true;
                 }
                 t3->start();
             }
 
-            // Bonus position is updated.
+            // Update bonus position.
             if (bonusVisible) {
                 bonus->updatePosition();
-                //pBonus->updatePosition();
-                //nBonus->updatePosition();
             }
 
-
+            // End of bonus action time.
             if (t4->getDuration() > NONSDL::BONUSACTIONTIME){
                 shootTime = 500;
                 t2->start();
                 t4->start();
             }
 
+            // Update projectiles position.
             for (const auto &p: pj) {
                 p->updatePosition();
             }
+
             // Move enemies.
             for (const auto &enemy: enemies) {
                 enemy->updatePosition();
             }
+
             /*
             for (const auto &enemy: enemies){           // At first I initiated the rows and columns the other way around
                 if (enemy->getX() < maxLeftPos){        // and then these lines were needed to decide which enemy was
@@ -242,6 +249,7 @@ void NONSDL::Game::run()
                 }
             }
              */
+
             // Shift enemies down and in other direction.
             if ((enemies.back()->getX() >= (1 - NONSDL::ENEMYWIDTH)) or (enemies.front()->getX() <= 0)) {
                 for (const auto &enemy: enemies) {
@@ -251,7 +259,7 @@ void NONSDL::Game::run()
             }
 
 
-            // COLLISION DETECTION.
+            // COLLISION DETECTION.------------------------------------------------------------------------------------
 
             // Collisions of projectiles.
             auto pIt = pj.begin();
@@ -265,6 +273,7 @@ void NONSDL::Game::run()
                     pIt = pj.erase(pIt);
                 } else pIt++;
             }
+
             if (lives < 1) {
                 gameState = END;
                 win = false;
@@ -278,14 +287,22 @@ void NONSDL::Game::run()
                     bul->disappear();
                     delete (*eIt);
                     eIt = enemies.erase(eIt);
-                } else eIt++;
+                }
+                else if ((*eIt)->collision(ps)){
+                    gameState = END;
+                    eIt = enemies.end();
+                    win = false;
+                }
+                else eIt++;
             }
+
+
             if (enemies.empty()) {
                 gameState = END;
                 win = true;
             }
 
-            if(bonusVisible) {
+            if (bonusVisible) {
                 if (bonus->getY() > 1 || (bonus->collision(ps))) {
                     if (bonus->collision(ps)) {
                         if (ran % 2 == 0) {
@@ -303,9 +320,7 @@ void NONSDL::Game::run()
                 }
             }
 
-
-
-            // RENDER OBJECTS.
+            // RENDER OBJECTS.-----------------------------------------------------------------------------------------
 
             window->clearWindow();
             ps->visualize(window);
@@ -342,11 +357,13 @@ void NONSDL::Game::run()
             }
         }
 
+//=====================================================================================================================
+
         while(running && gameState == END){
 
-            // CHECK INPUT
+            // CHECK INPUT---------------------------------------------------------------------------------------------
 
-            int temp = input->CheckInput();     // Press space bar to leave the game.
+            int temp = input->CheckInput();     // Press escape to leave the game.
             if (temp == 0) {
                 running = false;
             }
@@ -355,7 +372,8 @@ void NONSDL::Game::run()
             }
 
 
-            // RENDER SCREENS.
+            // RENDER SCREENS.-----------------------------------------------------------------------------------------
+
             window->clearWindow();
             if(win)
             window->render(5, 0.25, 0.15, 0.5, 0.3);
@@ -378,24 +396,6 @@ void NONSDL::Game::run()
     delete t3;
     delete t4;
     delete window;
-
-
-
-
-    /*for(alle playerentities p){
-        for(alle Enemyentities e){
-            if p.collisionDetection(e)
-            {
-                p.hascollision(e);
-            }
-        }
-        for(alle bonussen b){
-            if p.collisionDetection(b)
-            {
-                p.hascollision(b);
-            }
-        }
-    } */
 }
 
 
