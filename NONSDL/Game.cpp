@@ -61,9 +61,11 @@ void NONSDL::Game::run()
 
     // Create window.
     Window* window = afact->createWindow();
+    printf("test2 \n");
 
     // Clear window.
     window->clearWindow();
+    printf("test3 \n");
 
     // Make PlayerInput object
     PlayerInput* input = afact->createPlayerInput();
@@ -177,6 +179,14 @@ void NONSDL::Game::run()
             // Playership's position is updated.
             ps->updatePosition();
 
+            if (ps->getX() >= 1-NONSDL::ENEMYHEIGHT){
+                ps->setX(1-NONSDL::ENEMYHEIGHT);
+            }
+
+            if (ps->getX() <= 0){
+                ps->setX(0);
+            }
+
             // When shooting, the bullet's position is updated.
             if (shooting) {
                 bul->updatePosition();
@@ -213,7 +223,7 @@ void NONSDL::Game::run()
                 t3->start();
             }
 
-            // Update bonus position.
+            // Move bonus.
             if (bonusVisible) {
                 bonus->updatePosition();
             }
@@ -225,7 +235,7 @@ void NONSDL::Game::run()
                 t4->start();
             }
 
-            // Update projectiles position.
+            // Move projectiles.
             for (const auto &p: pj) {
                 p->updatePosition();
             }
@@ -346,8 +356,10 @@ void NONSDL::Game::run()
             }
 
             for(int i = 0; i < lives; i++){
-                window->render(9, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
+                window->render(9, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT/2 , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
             }
+
+            window->renderText(0.02, NONSDL::ENEMYHEIGHT/2, 0.2, NONSDL::ENEMYHEIGHT);
 
             window->updateWindow();
 

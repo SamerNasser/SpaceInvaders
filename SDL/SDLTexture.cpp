@@ -4,13 +4,14 @@
 
 #include "SDLTexture.h"
 
-SDL::SDLTexture::SDLTexture(SDL_Renderer* r)
+SDL::SDLTexture::SDLTexture(SDL_Renderer* r )
 {
     //Initialize
     mTexture = nullptr;
     mWidth = 0;
     mHeight = 0;
     renderer = r;
+    font = nullptr;
 }
 
 SDL::SDLTexture::~SDLTexture()
@@ -19,7 +20,7 @@ SDL::SDLTexture::~SDLTexture()
     free();
 }
 
-bool SDL::SDLTexture::loadFromFile( std::string path )
+bool SDL::SDLTexture:: loadFromFile( std::string path )
 {
     //Get rid of preexisting texture
     free();
@@ -60,9 +61,45 @@ bool SDL::SDLTexture::loadFromFile( std::string path )
     return mTexture != nullptr;
 }
 
+bool SDL::SDLTexture::loadFromRenderedText( std::string textureText, SDL_Color textColor, TTF_Font* f )
+{
+    //Get rid of preexisting texture
+    free();
+
+    font = f;
+
+    //Render text surface
+    SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
+    if( textSurface == nullptr )
+    {
+        printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
+    }
+    else
+    {
+        //Create texture from surface pixels
+        nTexture = SDL_CreateTextureFromSurface( renderer, textSurface );
+        if( nTexture == nullptr )
+        {
+            printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
+        }
+        else
+        {
+            //Get image dimensions
+            nWidth = textSurface->w;
+            nHeight = textSurface->h;
+        }
+
+        //Get rid of old surface
+        SDL_FreeSurface( textSurface );
+    }
+
+    //Return success
+    return nTexture != nullptr;
+}
+
 void SDL::SDLTexture::free()
 {
-    //Free texture if it exists
+    //Free mTexture if it exists
     if( mTexture != nullptr )
     {
         SDL_DestroyTexture( mTexture );
@@ -70,6 +107,16 @@ void SDL::SDLTexture::free()
         mWidth = 0;
         mHeight = 0;
     }
+
+    // Free nTexture if it exists
+    if( nTexture != nullptr )
+    {
+        SDL_DestroyTexture( mTexture );
+        nTexture = nullptr;
+        nWidth = 0;
+        nHeight = 0;
+    }
+
 }
 
 void SDL::SDLTexture::render( int x, int y, int w, int h, SDL_Rect* clip )
@@ -86,14 +133,20 @@ void SDL::SDLTexture::render( int x, int y, int w, int h, SDL_Rect* clip )
 
     //Render to screen
     SDL_RenderCopy( renderer, mTexture, clip, &renderQuad );
+
 }
 
-int SDL::SDLTexture::getWidth()
+void SDL::SDLTexture::renderText( int x, int y, int w, int h, SDL_Rect* clip )
 {
-    return mWidth;
+    //Set rendering space and render to screen
+    SDL_Rect renderQuad2 = { x, y, nWidth, nHeight };
+
+    renderQuad2.w = w;
+    renderQuad2.h = h;
+
+    // Render text to screen.
+    SDL_RenderCopy( renderer, nTexture, clip, &renderQuad2 );
 }
 
-int SDL::SDLTexture::getHeight()
-{
-    return mHeight;
-}
+
+

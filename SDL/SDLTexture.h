@@ -7,6 +7,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 #include "../GameConstants.h"
@@ -17,7 +18,7 @@ namespace SDL {
     class SDLTexture {
     public:
         //Constructor
-        SDLTexture(SDL_Renderer *r);
+        SDLTexture(SDL_Renderer* r);
 
         //Destructor
         ~SDLTexture();
@@ -25,34 +26,36 @@ namespace SDL {
         //Loads image at specified path
         bool loadFromFile(std::string path);
 
+        //Creates image from font string
+        bool loadFromRenderedText( std::string textureText, SDL_Color textColor, TTF_Font* f );
+
         //Deallocates texture
         void free();
 
-        //Set color modulation
-        void setColor(Uint8 red, Uint8 green, Uint8 blue);
-
-        //Set blending
-        void setBlendMode(SDL_BlendMode blending);
-
-        //Set alpha modulation
-        void setAlpha(Uint8 alpha);
-
         //Renders texture at given point
-        void render(int x, int y, int w, int h, SDL_Rect *clip = NULL);
+        void render(int x, int y, int w, int h, SDL_Rect *clip = nullptr);
 
-        //Gets image dimensions
-        int getWidth();
+        void renderText(int x, int y, int w, int h, SDL_Rect *clip = nullptr);
 
-        int getHeight();
 
     private:
-        //The actual hardware texture
+        //The actual hardware image texture
         SDL_Texture* mTexture;
 
         //Image dimensions
         int mWidth;
         int mHeight;
+
+        // Renderer.
         SDL_Renderer* renderer;
+
+        //The actual hardware image texture
+        SDL_Texture* nTexture;
+
+        //Text dimensions
+        int nWidth;
+        int nHeight;
+        TTF_Font * font;
     };
 }
 

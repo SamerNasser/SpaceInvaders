@@ -10,11 +10,16 @@ SDL::SDLWindow::SDLWindow(): NONSDL::Window()
     {
         printf( "Failed to initialize!\n" );
     }
+
     SDL::SDLWindow::gSpriteSheetTexture = new SDLTexture(SDL::SDLWindow::gRenderer);
+    SDL::SDLWindow::gTextTexture = new SDLTexture(SDL::SDLWindow::gRenderer);
+
     if( !loadMedia() )
     {
         printf( "Failed to load media!\n" );
     }
+
+
 }
 
 SDL::SDLWindow::~SDLWindow()
@@ -68,6 +73,12 @@ bool SDL::SDLWindow::init()
                 if( !( IMG_Init( imgFlags ) & imgFlags ) )
                 {
                     printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+                    success = false;
+                }
+
+                if( TTF_Init() == -1 )
+                {
+                    printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() );
                     success = false;
                 }
             }
@@ -163,6 +174,26 @@ bool SDL::SDLWindow::loadMedia()
         gSpriteClips[ NBONUS ].h = 37;
     }
 
+    //Open the font
+    printf("Test1 \n");
+    gFont = TTF_OpenFont( "../Fonts/Bebas-Regular.otf", 28 );
+    if( gFont == NULL )
+    {
+        printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
+        success = false;
+    }
+    else
+    {
+        //Render text
+        SDL_Color textColor = { 0xFF, 0xFF, 0xFF };
+        if( !gTextTexture->loadFromRenderedText( "SCORE: test", textColor, gFont ) )
+        {
+            printf( "Failed to render text texture!\n" );
+            success = false;
+        }
+    }
+
+
     return success;
 }
 
@@ -174,8 +205,21 @@ void SDL::SDLWindow::render(int type, float x, float y, float w, float h){
     int realW = w*NONSDL::SCREEN_WIDTH;
     int realH = h*NONSDL::SCREEN_HEIGHT;
 
-    //Render top left sprite
+    // Render top sprites.
     gSpriteSheetTexture->render( realX, realY, realW, realH, &gSpriteClips[ type ] );
+
+}
+
+void SDL::SDLWindow::renderText(float x, float y, float w, float h){
+
+
+    int realX = x*NONSDL::SCREEN_WIDTH;
+    int realY = y*NONSDL::SCREEN_HEIGHT;
+    int realW = w*NONSDL::SCREEN_WIDTH;
+    int realH = h*NONSDL::SCREEN_HEIGHT;
+
+    // Render text.
+    gTextTexture->renderText(realX, realY, realW, realH);
 
 }
 
@@ -184,6 +228,9 @@ void SDL::SDLWindow::close()
     //Free loaded images
     gSpriteSheetTexture->free();
 
+    // Free text.
+    gTextTexture->free();
+
     //Destroy window
     SDL_DestroyRenderer( gRenderer );
     SDL_DestroyWindow( gWindow );
@@ -191,6 +238,7 @@ void SDL::SDLWindow::close()
     gRenderer = nullptr;
 
     //Quit SDL subsystems
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
 }

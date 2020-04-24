@@ -17,6 +17,8 @@ namespace NONSDL {
 
         virtual void render(int type, float x, float y, float w, float h) = 0;
 
+        virtual void renderText(float x, float y, float w, float h) = 0;
+
         virtual void clearWindow() = 0;
 
         virtual void updateWindow() = 0;

@@ -7,6 +7,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <string>
 #include "SDLTexture.h"
@@ -31,6 +32,8 @@ class SDLWindow : public NONSDL::Window{
         //render
         void render(int type, float x, float y, float w, float h);
 
+        void renderText(float x, float y, float w, float h);
+
         //Frees media and shuts down SDL
         void close();
 
@@ -39,15 +42,23 @@ class SDLWindow : public NONSDL::Window{
         void updateWindow();
 
     private:
-        //The window we'll be rendering to
-        SDL_Window *gWindow = nullptr;
+        // The window we'll be rendering to.
+        SDL_Window* gWindow = nullptr;
 
-        //Scene sprites
+        // Scene sprites.
         SDL_Rect gSpriteClips[12];
+
+        // Rendered sprite sheet texture
         SDLTexture* gSpriteSheetTexture;
 
-        //The window renderer
-        SDL_Renderer *gRenderer = nullptr;
+        // The window renderer.
+        SDL_Renderer* gRenderer = nullptr;
+
+        // Globally used font.
+        TTF_Font* gFont = nullptr;
+
+        // Rendered text texture
+        SDLTexture* gTextTexture;
     };
 }
 
