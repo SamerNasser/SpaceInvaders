@@ -24,7 +24,6 @@ SDL::SDLWindow::SDLWindow(): NONSDL::Window()
 
 SDL::SDLWindow::~SDLWindow()
 {
-    printf("Er wordt geclosed \n");
     SDL::SDLWindow::close();
 }
 
@@ -175,24 +174,7 @@ bool SDL::SDLWindow::loadMedia()
     }
 
     //Open the font
-    printf("Test1 \n");
     gFont = TTF_OpenFont( "../Fonts/Bebas-Regular.otf", 28 );
-    if( gFont == NULL )
-    {
-        printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
-        success = false;
-    }
-    else
-    {
-        //Render text
-        SDL_Color textColor = { 0xFF, 0xFF, 0xFF };
-        if( !gTextTexture->loadFromRenderedText( "SCORE: test", textColor, gFont ) )
-        {
-            printf( "Failed to render text texture!\n" );
-            success = false;
-        }
-    }
-
 
     return success;
 }
@@ -210,8 +192,9 @@ void SDL::SDLWindow::render(int type, float x, float y, float w, float h){
 
 }
 
-void SDL::SDLWindow::renderText(float x, float y, float w, float h){
+void SDL::SDLWindow::renderText(float x, float y, float w, float h, int score){
 
+    std::string scoreString = std::to_string(score);
 
     int realX = x*NONSDL::SCREEN_WIDTH;
     int realY = y*NONSDL::SCREEN_HEIGHT;
@@ -219,6 +202,19 @@ void SDL::SDLWindow::renderText(float x, float y, float w, float h){
     int realH = h*NONSDL::SCREEN_HEIGHT;
 
     // Render text.
+    if( gFont == NULL )
+    {
+        printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
+    }
+    else
+    {
+        //Render text
+        SDL_Color textColor = { 0xFF, 0xFF, 0xFF };
+        if( !gTextTexture->loadFromRenderedText( "SCORE: " + scoreString, textColor, gFont ) )
+        {
+            printf( "Failed to render text texture!\n" );
+        }
+    }
     gTextTexture->renderText(realX, realY, realW, realH);
 
 }

@@ -50,9 +50,7 @@ void NONSDL::Game::run()
 
     BonusEntity* bonus;
 
-    int maxLeftPos = 2;
-
-    int maxRightPos = -1;
+    int score = 0;
 
     int lives = 3;
 
@@ -61,11 +59,9 @@ void NONSDL::Game::run()
 
     // Create window.
     Window* window = afact->createWindow();
-    printf("test2 \n");
 
     // Clear window.
     window->clearWindow();
-    printf("test3 \n");
 
     // Make PlayerInput object
     PlayerInput* input = afact->createPlayerInput();
@@ -278,6 +274,7 @@ void NONSDL::Game::run()
                     if ((*pIt)->collision(ps)) {
                         ps->setX(NONSDL::PLAYERX);
                         lives--;
+                        score -= 100;
                     }
                     delete (*pIt);
                     pIt = pj.erase(pIt);
@@ -297,6 +294,7 @@ void NONSDL::Game::run()
                     bul->disappear();
                     delete (*eIt);
                     eIt = enemies.erase(eIt);
+                    score  += 50;
                 }
                 else if ((*eIt)->collision(ps)){
                     gameState = END;
@@ -318,9 +316,11 @@ void NONSDL::Game::run()
                         if (ran % 2 == 0) {
                             shootTime = 1500;
                             t2->start();
+                            score += 200;
                         } else{
                             shootTime = 250;
                             t2->start();
+                            score -= 200;
                         }
 
                     }
@@ -359,7 +359,7 @@ void NONSDL::Game::run()
                 window->render(9, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT/2 , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
             }
 
-            window->renderText(0.02, NONSDL::ENEMYHEIGHT/2, 0.2, NONSDL::ENEMYHEIGHT);
+            window->renderText(0.02, NONSDL::ENEMYHEIGHT/2, 0.2, NONSDL::ENEMYHEIGHT, score);
 
             window->updateWindow();
 
