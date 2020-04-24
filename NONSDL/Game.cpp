@@ -48,6 +48,8 @@ void NONSDL::Game::run()
 
     std::vector<Projectile*> pj;
 
+    std::string text;
+
     BonusEntity* bonus;
 
     int score = 0;
@@ -72,11 +74,11 @@ void NONSDL::Game::run()
     // Make bullet.
     Bullet* bul = afact->createBullet(NONSDL::BULLETX, NONSDL::BULLETY, NONSDL::BULLETWIDTH, NONSDL::BULLETHEIGHT, NONSDL::BULLETXSPEED, NONSDL::BULLETYSPEED);
 
-    //PBonus* pBonus = afact->createPBonus(1, 1, NONSDL::PBONUSWIDTH,
-    //                                     NONSDL::PBONUSHEIGHT, NONSDL::PBONUSXSPEED, NONSDL::PBONUSYSPEED);
+    // Make music.
+    Sound* music = afact->createSound();
 
-    //NBonus* nBonus = afact->createNBonus(1, 1, NONSDL::NBONUSWIDTH,
-    //                                     NONSDL::NBONUSHEIGHT, NONSDL::NBONUSXSPEED, NONSDL::NBONUSYSPEED);
+    // Make sound effect.
+    Sound* effect = afact->createSound();
 
     // Make timer for frames.
     Timer* t1 = afact->createTimer();
@@ -109,6 +111,9 @@ void NONSDL::Game::run()
 
     // Start timer for bonus spawning.
     t3->start();
+
+    // Start music.
+    music->playMusic();
 
 
     // While application is running.
@@ -164,6 +169,7 @@ void NONSDL::Game::run()
                     bul->setYSpeed(NONSDL::BULLETYSPEED);
                     bul->setX(ps->getX() + (NONSDL::PLAYERWIDTH / 2));
                     bul->setY(NONSDL::BULLETY);
+                    effect->shootSound();
                 }
             } else {
                 ps->setXSpeed(0);
@@ -275,6 +281,7 @@ void NONSDL::Game::run()
                         ps->setX(NONSDL::PLAYERX);
                         lives--;
                         score -= 100;
+                        effect->hurtSound();
                     }
                     delete (*pIt);
                     pIt = pj.erase(pIt);
@@ -284,6 +291,7 @@ void NONSDL::Game::run()
             if (lives < 1) {
                 gameState = END;
                 win = false;
+                effect->gameOverSound();
             }
 
             // Collisions of enemies.
@@ -295,6 +303,7 @@ void NONSDL::Game::run()
                     delete (*eIt);
                     eIt = enemies.erase(eIt);
                     score  += 50;
+                    effect->hitSound();
                 }
                 else if ((*eIt)->collision(ps)){
                     gameState = END;
@@ -308,8 +317,10 @@ void NONSDL::Game::run()
             if (enemies.empty()) {
                 gameState = END;
                 win = true;
+                effect->winSound();
             }
 
+            // Collision of bonuses.
             if (bonusVisible) {
                 if (bonus->getY() > 1 || (bonus->collision(ps))) {
                     if (bonus->collision(ps)) {
@@ -317,10 +328,12 @@ void NONSDL::Game::run()
                             shootTime = 1500;
                             t2->start();
                             score += 200;
+                            effect->PBonusSound();
                         } else{
                             shootTime = 250;
                             t2->start();
                             score -= 200;
+                            effect->NBonusSound();
                         }
 
                     }
@@ -359,7 +372,8 @@ void NONSDL::Game::run()
                 window->render(9, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT/2 , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
             }
 
-            window->renderText(0.02, NONSDL::ENEMYWIDTH/2, 0.2, NONSDL::ENEMYHEIGHT, score);
+            text = ("score: " + std::to_string(score));
+            window->renderText(0.02, NONSDL::ENEMYWIDTH/2, 0.2, NONSDL::ENEMYHEIGHT, text);
 
             window->updateWindow();
 
@@ -387,10 +401,17 @@ void NONSDL::Game::run()
             // RENDER SCREENS.-----------------------------------------------------------------------------------------
 
             window->clearWindow();
-            if(win)
-            window->render(5, 0.25, 0.15, 0.5, 0.3);
-            else window->render(6, 0.25, 0.15, 0.5, 0.5);
-            window->render(8, 0.33, 0.68, 0.35, 0.035);
+            if(win) {
+                window->render(5, 0.25, 0.15, 0.5, 0.3);
+                text = ("Your score was: " + std::to_string(score));
+                window->renderText(0.32, 0.68, 0.35, 0.035, text);
+            }
+            else {
+                window->render(6, 0.25, 0.15, 0.5, 0.5);
+                text = ("Your score was: " + std::to_string(score));
+                window->renderText(0.32, 0.68, 0.35, 0.035, text);
+            }
+            window->render(8, 0.35, 0.8, 0.35, 0.035);
             window->updateWindow();
         }
     }
@@ -407,6 +428,8 @@ void NONSDL::Game::run()
     delete t2;
     delete t3;
     delete t4;
+    delete music;
+    delete effect;
     delete window;
 }
 

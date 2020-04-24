@@ -38,6 +38,8 @@ namespace SDL {
 
         NONSDL::Window* createWindow();
 
+        NONSDL::Sound* createSound();
+
     };
 }
 

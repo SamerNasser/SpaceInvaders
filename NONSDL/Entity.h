@@ -44,13 +44,7 @@ namespace NONSDL {
         bool collision(Entity* e);
 
 
-        //Methods
         virtual void visualize(Window* win) = 0;
-
-        //static bool collisionDetection(Entity *);
-
-
-    private:
 
 
     protected:

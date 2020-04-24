@@ -132,7 +132,7 @@ void SDL::SDLTexture::render( int x, int y, int w, int h, SDL_Rect* clip, bool t
 
     //Render to screen
     if (text) {
-        SDL_RenderCopy(renderer, nTexture, clip, &renderQuad);
+        SDL_RenderCopy( renderer, nTexture, clip, &renderQuad );
     }
     else {
         SDL_RenderCopy( renderer, mTexture, clip, &renderQuad );

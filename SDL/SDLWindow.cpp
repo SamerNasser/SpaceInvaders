@@ -192,9 +192,7 @@ void SDL::SDLWindow::render(int type, float x, float y, float w, float h){
 }
 
 
-void SDL::SDLWindow::renderText(float x, float y, float w, float h, int score){
-
-    std::string scoreString = std::to_string(score);
+void SDL::SDLWindow::renderText(float x, float y, float w, float h, std::string text){
 
     int realX = x*NONSDL::SCREEN_WIDTH;
     int realY = y*NONSDL::SCREEN_HEIGHT;
@@ -202,7 +200,7 @@ void SDL::SDLWindow::renderText(float x, float y, float w, float h, int score){
     int realH = h*NONSDL::SCREEN_HEIGHT;
 
     // Render text.
-    if( gFont == NULL )
+    if( gFont == nullptr )
     {
         printf( "Failed to load lazy font! SDL_ttf Error: %s\n", TTF_GetError() );
     }
@@ -210,7 +208,7 @@ void SDL::SDLWindow::renderText(float x, float y, float w, float h, int score){
     {
         //Render text
         SDL_Color textColor = { 0xFF, 0xFF, 0xFF };
-        if( !gTextTexture->loadFromRenderedText( "SCORE: " + scoreString, textColor, gFont ) )
+        if( !gTextTexture->loadFromRenderedText( text, textColor, gFont ) )
         {
             printf( "Failed to render text texture!\n" );
         }

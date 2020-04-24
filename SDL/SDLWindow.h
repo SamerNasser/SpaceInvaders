@@ -32,7 +32,7 @@ class SDLWindow : public NONSDL::Window{
         //render
         void render(int type, float x, float y, float w, float h);
 
-        void renderText(float x, float y, float w, float h, int score);
+        void renderText(float x, float y, float w, float h, std::string text);
 
         //Frees media and shuts down SDL
         void close();
@@ -59,6 +59,7 @@ class SDLWindow : public NONSDL::Window{
 
         // Rendered text texture
         SDLTexture* gTextTexture;
+
     };
 }
 

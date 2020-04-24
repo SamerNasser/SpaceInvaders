@@ -12,6 +12,7 @@
 #include "SDLTimer.h"
 #include "SDLPBonus.h"
 #include "SDLNBonus.h"
+#include "SDLSound.h"
 
 SDL::SDLFactory::SDLFactory()
 {
@@ -66,6 +67,11 @@ NONSDL::Timer* SDL::SDLFactory::createTimer()
 NONSDL::Window* SDL::SDLFactory::createWindow()
 {
     return new SDL::SDLWindow();
+}
+
+NONSDL::Sound* SDL::SDLFactory::createSound()
+{
+    return new SDL::SDLSound();
 }
 
 

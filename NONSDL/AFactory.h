@@ -14,6 +14,7 @@
 #include "Window.h"
 #include "NBonus.h"
 #include "PBonus.h"
+#include "Sound.h"
 
 namespace NONSDL {
     class AFactory {
@@ -40,6 +41,8 @@ namespace NONSDL {
         virtual Timer* createTimer() = 0;
 
         virtual Window* createWindow() = 0;
+
+        virtual Sound* createSound() = 0;
 
     };
 }
