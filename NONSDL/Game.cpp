@@ -359,7 +359,7 @@ void NONSDL::Game::run()
                 window->render(9, (0.8 + (i*NONSDL::ENEMYWIDTH + 0.01)), NONSDL::ENEMYHEIGHT/2 , NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT);
             }
 
-            window->renderText(0.02, NONSDL::ENEMYHEIGHT/2, 0.2, NONSDL::ENEMYHEIGHT, score);
+            window->renderText(0.02, NONSDL::ENEMYWIDTH/2, 0.2, NONSDL::ENEMYHEIGHT, score);
 
             window->updateWindow();
 

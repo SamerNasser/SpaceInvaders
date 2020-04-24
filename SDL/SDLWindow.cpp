@@ -181,16 +181,16 @@ bool SDL::SDLWindow::loadMedia()
 
 void SDL::SDLWindow::render(int type, float x, float y, float w, float h){
 
-
     int realX = x*NONSDL::SCREEN_WIDTH;
     int realY = y*NONSDL::SCREEN_HEIGHT;
     int realW = w*NONSDL::SCREEN_WIDTH;
     int realH = h*NONSDL::SCREEN_HEIGHT;
 
-    // Render top sprites.
-    gSpriteSheetTexture->render( realX, realY, realW, realH, &gSpriteClips[ type ] );
+    // Render sprites.
+    gSpriteSheetTexture->render(realX, realY, realW, realH, &gSpriteClips[type], false);
 
 }
+
 
 void SDL::SDLWindow::renderText(float x, float y, float w, float h, int score){
 
@@ -215,9 +215,10 @@ void SDL::SDLWindow::renderText(float x, float y, float w, float h, int score){
             printf( "Failed to render text texture!\n" );
         }
     }
-    gTextTexture->renderText(realX, realY, realW, realH);
+    gTextTexture->render(realX, realY, realW, realH);
 
 }
+
 
 void SDL::SDLWindow::close()
 {

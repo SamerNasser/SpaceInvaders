@@ -119,33 +119,25 @@ void SDL::SDLTexture::free()
 
 }
 
-void SDL::SDLTexture::render( int x, int y, int w, int h, SDL_Rect* clip )
+void SDL::SDLTexture::render( int x, int y, int w, int h, SDL_Rect* clip, bool text )
 {
     //Set rendering space and render to screen
     SDL_Rect renderQuad = { x, y, mWidth, mHeight };
 
     //Set clip rendering dimensions
-    if( clip != nullptr )
     {
         renderQuad.w = w;
         renderQuad.h = h;
     }
 
     //Render to screen
-    SDL_RenderCopy( renderer, mTexture, clip, &renderQuad );
+    if (text) {
+        SDL_RenderCopy(renderer, nTexture, clip, &renderQuad);
+    }
+    else {
+        SDL_RenderCopy( renderer, mTexture, clip, &renderQuad );
+    }
 
-}
-
-void SDL::SDLTexture::renderText( int x, int y, int w, int h, SDL_Rect* clip )
-{
-    //Set rendering space and render to screen
-    SDL_Rect renderQuad2 = { x, y, nWidth, nHeight };
-
-    renderQuad2.w = w;
-    renderQuad2.h = h;
-
-    // Render text to screen.
-    SDL_RenderCopy( renderer, nTexture, clip, &renderQuad2 );
 }
 
 
