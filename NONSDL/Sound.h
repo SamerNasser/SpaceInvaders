@@ -30,6 +30,8 @@ namespace NONSDL {
 
         virtual void playMusic() = 0;
 
+        virtual void stopMusic() = 0;
+
 
     protected:
         unsigned int startTime;

@@ -51,10 +51,10 @@ namespace NONSDL {
     const float BONUSYSPEED = 0.003;
 
     // Number of enemy rows.
-    const int NUMBEROFROWS = 3;
+    const int NUMBEROFROWS = 4;
 
     // Number of enemy columns.
-    const int NUMBEROFCOLUMNS = 10;
+    const int NUMBEROFCOLUMNS = 12;
 
     // Number of milliseconds for 1 frame for 60 fps.
     const unsigned long FRAMETIMEMS = 17;

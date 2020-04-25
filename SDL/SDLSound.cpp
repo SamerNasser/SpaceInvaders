@@ -177,3 +177,8 @@ void SDL::SDLSound::playMusic()
 {
     Mix_PlayMusic( gMusic, -1 );
 }
+
+void SDL::SDLSound::stopMusic()
+{
+    Mix_PauseMusic();
+}

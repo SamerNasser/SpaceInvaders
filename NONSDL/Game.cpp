@@ -292,6 +292,7 @@ void NONSDL::Game::run()
                 gameState = END;
                 win = false;
                 effect->gameOverSound();
+                music->stopMusic();
             }
 
             // Collisions of enemies.
@@ -309,6 +310,8 @@ void NONSDL::Game::run()
                     gameState = END;
                     eIt = enemies.end();
                     win = false;
+                    effect->gameOverSound();
+                    music->stopMusic();
                 }
                 else eIt++;
             }
@@ -318,6 +321,7 @@ void NONSDL::Game::run()
                 gameState = END;
                 win = true;
                 effect->winSound();
+                music->stopMusic();
             }
 
             // Collision of bonuses.

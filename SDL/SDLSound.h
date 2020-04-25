@@ -43,6 +43,8 @@ namespace SDL {
 
         void playMusic();
 
+        void stopMusic();
+
     private:
         // The music that will be played.
         Mix_Music* gMusic = NULL;
