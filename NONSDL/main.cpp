@@ -15,7 +15,6 @@ int main(int argc, char* args[]) {
     NONSDL::Game* G = NONSDL::Game::gameInstance(afact);
     G->run();
     delete G;
-    printf("We gaan afact deleten \n");
     delete afact;
     return 0;
 }

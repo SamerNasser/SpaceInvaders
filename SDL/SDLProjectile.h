@@ -21,9 +21,6 @@ namespace SDL {
         // Make visible.
         void visualize(NONSDL::Window* win);
 
-    private:
-        SDLWindow* window;
-
     };
 }
 

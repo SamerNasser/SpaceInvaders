@@ -24,9 +24,6 @@ namespace SDL {
 
         void shiftDown();
 
-    private:
-        SDLWindow* window;
-
     };
 }
 

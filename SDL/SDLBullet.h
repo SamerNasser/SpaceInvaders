@@ -22,9 +22,6 @@ namespace SDL {
 
         void disappear();
 
-    private:
-        SDLWindow* window;
-
     };
 }
 
