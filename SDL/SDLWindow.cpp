@@ -171,6 +171,12 @@ bool SDL::SDLWindow::loadMedia()
         gSpriteClips[ NBONUS ].y = 396;
         gSpriteClips[ NBONUS ].w = 23;
         gSpriteClips[ NBONUS ].h = 37;
+
+        // Set background sprite.
+        gSpriteClips[ BACKGROUND ].x = 675;
+        gSpriteClips[ BACKGROUND ].y = 330;
+        gSpriteClips[ BACKGROUND ].w = 168;
+        gSpriteClips[ BACKGROUND ].h = 142;
     }
 
     //Open the font

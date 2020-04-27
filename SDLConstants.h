@@ -18,7 +18,8 @@ namespace SDL {
         ENDTEXT,
         LIFE,
         PBONUS,
-        NBONUS
+        NBONUS,
+        BACKGROUND
     };
 }
 

@@ -350,6 +350,7 @@ void NONSDL::Game::run()
             // RENDER OBJECTS.-----------------------------------------------------------------------------------------
 
             window->clearWindow();
+            window->render(12, 0, 0, 1, 1);
             ps->visualize(window);
             // Bonus will be visualized.
             if (bonusVisible) {
