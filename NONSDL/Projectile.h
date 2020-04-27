@@ -17,12 +17,6 @@ namespace NONSDL {
         //destructor
         virtual ~Projectile();
 
-        //copy constructor
-        //Projectile(const Projectile &c);
-
-        //assignment operator
-        //Projectile &operator=(const Projectile &c);
-
         //make visible
         virtual void visualize(Window* win) = 0;
     };

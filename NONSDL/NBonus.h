@@ -17,12 +17,6 @@ namespace NONSDL {
         //destructor
         virtual ~NBonus();
 
-        //copy constructor
-        //NBonus(const NBonus &c);
-
-        //assignment operator
-        //NBonus &operator=(const NBonus &c);
-
         //make visible
         virtual void visualize(Window* win) = 0;
 

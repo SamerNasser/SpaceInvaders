@@ -13,14 +13,3 @@ NONSDL::Projectile::~Projectile()
 {
 
 }
-
-/* NONSDL::Projectile::Projectile(const Projectile& g):PlayerEntity(g)
-{
-
-}
-
-NONSDL::Projectile& NONSDL::Projectile::operator=(const Projectile& g)
-{
-
-}
- */

@@ -13,14 +13,3 @@ NONSDL::PlayerShip::~PlayerShip()
 {
 
 }
-
-/* NONSDL::PlayerShip::PlayerShip(const PlayerShip& g):PlayerEntity(g)
-{
-
-}
-
-NONSDL::PlayerShip& NONSDL::PlayerShip::operator=(const PlayerShip& g)
-{
-
-}
- */

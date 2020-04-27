@@ -15,12 +15,6 @@ namespace NONSDL {
         //destructor
         virtual ~PlayerShip();
 
-        //copy constructor
-        //PlayerShip(const PlayerShip &c);
-
-        //assignment operator
-        //PlayerShip &operator=(const PlayerShip &c);
-
         //make visible
         virtual void visualize(Window* win) = 0;
     };

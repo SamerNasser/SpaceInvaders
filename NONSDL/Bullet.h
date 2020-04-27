@@ -16,12 +16,6 @@ namespace NONSDL {
         //destructor
         virtual ~Bullet();
 
-        //copy constructor
-        //Bullet(const Bullet &c);
-
-        //assignment operator
-        //Bullet &operator=(const Bullet &c);
-
         //make visible
         virtual void visualize(Window* win) = 0;
 

@@ -17,12 +17,6 @@ namespace NONSDL {
         //destructor
         virtual ~Enemy();
 
-        //copy constructor
-        //Enemy(const Enemy &c);
-
-        //assignment operator
-        //Enemy &operator=(const Enemy &c);
-
         //make visible
         virtual void visualize(Window* win) = 0;
 

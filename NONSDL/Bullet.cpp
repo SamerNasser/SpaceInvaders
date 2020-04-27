@@ -13,14 +13,3 @@ NONSDL::Bullet::~Bullet()
 {
 
 }
-
-/* NONSDL::Bullet::Bullet(const Bullet& g):PlayerEntity(g)
-{
-
-}
-
-NONSDL::Bullet& NONSDL::Bullet::operator=(const Bullet& g)
-{
-
-}
- */

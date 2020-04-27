@@ -13,14 +13,3 @@ NONSDL::Enemy::~Enemy()
 {
 
 }
-
-/* NONSDL::Enemy::Enemy(const Enemy& g):PlayerEntity(g)
-{
-
-}
-
-NONSDL::Enemy& NONSDL::Enemy::operator=(const Enemy& g)
-{
-
-}
- */

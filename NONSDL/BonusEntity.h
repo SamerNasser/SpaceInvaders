@@ -17,12 +17,6 @@ namespace NONSDL {
         //destructor
         virtual ~BonusEntity();
 
-        //copy constructor
-        //BonusEntity(const BonusEntity &c);
-
-        //assignment operator
-        //BonusEntity &operator=(const BonusEntity &c);
-
         //make visible
         virtual void visualize(Window* win) = 0;
 
