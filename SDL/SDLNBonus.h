@@ -6,10 +6,10 @@
 #define SPACEINVADERSV2_SDLNBONUS_H
 
 
-#include "../NONSDL/NBonus.h"
+#include "../NONSDL/BonusEntity.h"
 
 namespace SDL {
-    class SDLNBonus : public NONSDL::NBonus{
+    class SDLNBonus : public NONSDL::BonusEntity{
     public:
         // Constructor.
         SDLNBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);

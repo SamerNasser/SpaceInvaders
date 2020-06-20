@@ -10,26 +10,20 @@
 namespace NONSDL {
     class Game {
     private:
-        //constructors
+        // Constructor
         Game(AFactory *);
 
-        //copy constructor
-        //Game(const Game &c);
-
-        //assignment operator
-        //Game &operator=(const Game &c);
-
         static Game *game; //Dit moet static zijn, omdat we er niet meer dan 1 van mogen aanmaken
+        // Dit is dus een klassevariabele
         AFactory *afact;
 
     public:
-        //destructor
+        // Destructor
         ~Game();
 
         void run();
 
-        static Game *
-        gameInstance(AFactory *); //Dit moet static zijn omdat we de methode al moeten kunnen oproepen alvorens
+        static Game *gameInstance(AFactory *); //Dit moet static zijn omdat we de methode al moeten kunnen oproepen alvorens
         // er een object van gemaakt is, want de constructor is private.
     };
 }

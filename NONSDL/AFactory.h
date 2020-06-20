@@ -12,8 +12,7 @@
 #include "Projectile.h"
 #include "Timer.h"
 #include "Window.h"
-#include "NBonus.h"
-#include "PBonus.h"
+#include "BonusEntity.h"
 #include "Sound.h"
 
 namespace NONSDL {
@@ -23,6 +22,7 @@ namespace NONSDL {
         {
 
         }
+
         //Methods
         virtual PlayerShip* createPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
 
@@ -34,9 +34,9 @@ namespace NONSDL {
 
         virtual Projectile* createProjectile(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
 
-        virtual PBonus* createPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
+        virtual BonusEntity* createPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
 
-        virtual NBonus* createNBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
+        virtual BonusEntity* createNBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
 
         virtual Timer* createTimer() = 0;
 

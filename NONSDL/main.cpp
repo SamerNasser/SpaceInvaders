@@ -4,7 +4,7 @@
 #include "Game.h"
 
 int main(int argc, char* args[]) {
-    NONSDL::AFactory* afact = new SDL::SDLFactory(); // afact moet een pointer zijn, want als dit niet zo zou zijn en we zeggen gwn:
+    NONSDL::AFactory* afact = new SDL::SDLFactory(); // afact moet een pointer zijn, want als dit niet zo zou zijn en we zeggen gewoon:
     // Afactory afact
     // afact = SDLFactory
     // dan zouden in afact enkel de velden van SDLFactory

@@ -49,12 +49,12 @@ NONSDL::Projectile* SDL::SDLFactory::createProjectile(float xPos, float yPos, fl
     return new SDL::SDLProjectile(xPos, yPos, w, h, xSpeed, ySpeed);
 }
 
-NONSDL::PBonus* SDL::SDLFactory::createPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
+NONSDL::BonusEntity* SDL::SDLFactory::createPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
 {
     return new SDL::SDLPBonus(xPos, yPos, w, h, xSpeed, ySpeed);
 }
 
-NONSDL::NBonus* SDL::SDLFactory::createNBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
+NONSDL::BonusEntity* SDL::SDLFactory::createNBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed)
 {
     return new SDL::SDLNBonus(xPos, yPos, w, h, xSpeed, ySpeed);
 }

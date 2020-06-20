@@ -19,17 +19,6 @@ NONSDL::Game::~Game()
 
 }
 
-/*NONSDL::Game::Game(const Game& g)
-{
-
-}
-
-NONSDL::Game& NONSDL::Game::operator=(const Game& g)
-{
-
-}
- */
-
 void NONSDL::Game::run()
 {
 
@@ -316,14 +305,6 @@ void NONSDL::Game::run()
                 else eIt++;
             }
 
-
-            if (enemies.empty()) {
-                gameState = END;
-                win = true;
-                effect->winSound();
-                music->stopMusic();
-            }
-
             // Collision of bonuses.
             if (bonusVisible) {
                 if (bonus->getY() > 1 || (bonus->collision(ps))) {
@@ -345,6 +326,14 @@ void NONSDL::Game::run()
                     bonusVisible = false;
                     delete bonus;
                 }
+            }
+
+            // When all enemies are killed, go to winning screen.
+            if (enemies.empty()) {
+                gameState = END;
+                win = true;
+                effect->winSound();
+                music->stopMusic();
             }
 
             // RENDER OBJECTS.-----------------------------------------------------------------------------------------

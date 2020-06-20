@@ -5,7 +5,7 @@
 #include "SDLPBonus.h"
 #include "../SDLConstants.h"
 
-SDL::SDLPBonus::SDLPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed): NONSDL::PBonus(xPos, yPos, w, h, xSpeed, ySpeed)
+SDL::SDLPBonus::SDLPBonus(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed): NONSDL::BonusEntity(xPos, yPos, w, h, xSpeed, ySpeed)
 {
 
 }
