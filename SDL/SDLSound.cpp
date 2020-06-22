@@ -20,10 +20,10 @@ SDL::SDLSound::~SDLSound()
 
 bool SDL::SDLSound::init()
 {
-    //Initialization flag
+    // Initialization flag.
     bool success = true;
 
-    //Initialize SDL
+    // Initialize SDL.
     if( SDL_Init( SDL_INIT_AUDIO ) < 0 )
     {
         printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
@@ -31,7 +31,7 @@ bool SDL::SDLSound::init()
     }
     else
     {
-        //Initialize SDL_mixer
+        // Initialize SDL_mixer.
         if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
         {
             printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
@@ -42,7 +42,7 @@ bool SDL::SDLSound::init()
 
 bool SDL::SDLSound::loadMedia()
 {
-    //Loading success flag
+    // Loading success flag.
     bool success = true;
 
     //Load music
@@ -53,7 +53,7 @@ bool SDL::SDLSound::loadMedia()
         success = false;
     }
 
-    //Load sound effects
+    // Load sound effects.
     gShoot = Mix_LoadWAV( "../Sounds/shoot.wav" );
     if( gShoot == NULL )
     {
@@ -130,11 +130,11 @@ void SDL::SDLSound::close()
     gNBonus = nullptr;
 
 
-    //Free the music
+    // Free the music.
     Mix_FreeMusic( gMusic );
     gMusic = nullptr;
 
-    //Quit SDL subsystem
+    // Quit SDL subsystem.
     Mix_Quit();
 }
 

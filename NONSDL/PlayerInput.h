@@ -8,13 +8,13 @@
 namespace NONSDL {
 class PlayerInput {
     public:
-        //Constructor
+        // Constructor.
         PlayerInput();
 
-        //Destructor
+        // Destructor.
         virtual ~PlayerInput();
 
-        //Check input from player
+        // Check input from player.
         virtual int CheckInput() = 0;
     };
 }

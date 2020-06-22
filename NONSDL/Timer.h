@@ -10,10 +10,13 @@ namespace NONSDL {
     public:
         // Constructor.
         Timer();
+
         // Destructor.
         virtual ~Timer();
+
         // Start timer.
         virtual void start() = 0;
+
         // Duration.
         virtual unsigned int  getDuration() = 0;
     protected:

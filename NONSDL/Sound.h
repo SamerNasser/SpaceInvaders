@@ -13,7 +13,7 @@ namespace NONSDL {
         Sound();
         // Destructor.
         virtual ~Sound();
-        // Shoot Sound.
+
         virtual void shootSound() = 0;
 
         virtual void hitSound() = 0;

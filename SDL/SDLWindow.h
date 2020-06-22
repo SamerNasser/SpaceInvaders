@@ -17,24 +17,24 @@
 namespace SDL {
 class SDLWindow : public NONSDL::Window{
     public:
-        //Constructor
+        // Constructor.
         SDLWindow();
 
-        //Destructor
+        // Destructor.
         ~SDLWindow();
 
-        //Starts up SDL and creates window
+        // Starts up SDL and creates window.
         bool init();
 
-        //Loads media
+        // Loads media.
         bool loadMedia();
 
-        //render
+        // Render.
         void render(int type, float x, float y, float w, float h);
 
         void renderText(float x, float y, float w, float h, std::string text);
 
-        //Frees media and shuts down SDL
+        // Frees media and shuts down SDL.
         void close();
 
         void clearWindow();
@@ -48,7 +48,7 @@ class SDLWindow : public NONSDL::Window{
         // Scene sprites.
         SDL_Rect gSpriteClips[13];
 
-        // Rendered sprite sheet texture
+        // Rendered sprite sheet texture.
         SDLTexture* gSpriteSheetTexture;
 
         // The window renderer.
@@ -57,7 +57,7 @@ class SDLWindow : public NONSDL::Window{
         // Globally used font.
         TTF_Font* gFont = nullptr;
 
-        // Rendered text texture
+        // Rendered text texture.
         SDLTexture* gTextTexture;
 
     };

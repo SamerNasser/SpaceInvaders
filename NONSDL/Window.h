@@ -10,12 +10,13 @@
 namespace NONSDL {
     class Window{
     public:
-        //Constructor
+        // Constructor.
         Window();
 
-        //Destructor
+        // Destructor.
         virtual ~Window();
 
+        // Methods.
         virtual void render(int type, float x, float y, float w, float h) = 0;
 
         virtual void renderText(float x, float y, float w, float h, std::string text) = 0;

@@ -11,13 +11,13 @@
 namespace NONSDL {
     class Enemy : public Entity {
     public:
-        //constructor
+        // Constructor.
         Enemy(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
-        //destructor
+        // Destructor.
         virtual ~Enemy();
 
-        //make visible
+        // Methods.
         virtual void visualize(Window* win) = 0;
 
         virtual void switchDirection() = 0;

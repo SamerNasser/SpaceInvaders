@@ -23,15 +23,15 @@ int SDL::SDLPlayerInput::CheckInput()
     SDL_Event e;
 
     while (SDL_PollEvent(&e) != 0) {
-        //User requests quit
+        // User requests quit.
         if (e.type == SDL_QUIT) {
             input = 0;
             return input;
     }
-            //User presses a key
+            // User presses a key.
         else if( e.type == SDL_KEYDOWN )
         {
-            //Select actions based on key press
+            // Select actions based on key press.
             switch( e.key.keysym.sym) {
                 case SDLK_LEFT:
                     input = 1;

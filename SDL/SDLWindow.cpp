@@ -29,10 +29,10 @@ SDL::SDLWindow::~SDLWindow()
 
 bool SDL::SDLWindow::init()
 {
-    //Initialization flag
+    // Initialization flag.
     bool success = true;
 
-    //Initialize SDL
+    // Initialize SDL.
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
         printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
@@ -40,13 +40,13 @@ bool SDL::SDLWindow::init()
     }
     else
     {
-        //Set texture filtering to linear
+        // Set texture filtering to linear.
         if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
         {
             printf( "Warning: Linear texture filtering not enabled!" );
         }
 
-        //Create window
+        // Create window.
         gWindow = SDL_CreateWindow( "Space Invaders", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, NONSDL::SCREEN_WIDTH, NONSDL::SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if( gWindow == nullptr )
         {
@@ -55,7 +55,7 @@ bool SDL::SDLWindow::init()
         }
         else
         {
-            //Create renderer for window
+            // Create renderer for window.
             gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED );
             if( gRenderer == nullptr )
             {
@@ -64,10 +64,10 @@ bool SDL::SDLWindow::init()
             }
             else
             {
-                //Initialize renderer color
+                // Initialize renderer color.
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 
-                //Initialize PNG loading
+                // Initialize PNG loading.
                 int imgFlags = IMG_INIT_PNG;
                 if( !( IMG_Init( imgFlags ) & imgFlags ) )
                 {
@@ -89,10 +89,10 @@ bool SDL::SDLWindow::init()
 
 bool SDL::SDLWindow::loadMedia()
 {
-    //Loading success flag
+    // Loading success flag.
     bool success = true;
 
-    //Load sprite sheet texture
+    // Load sprite sheet texture.
     if( !gSpriteSheetTexture->loadFromFile( "../SpriteSheets/SpaceInvadersSpriteSheet.png" ) )
     {
         printf( "Failed to load sprite sheet texture!\n" );
@@ -179,7 +179,7 @@ bool SDL::SDLWindow::loadMedia()
         gSpriteClips[ BACKGROUND ].h = 142;
     }
 
-    //Open the font
+    // Open the font.
     gFont = TTF_OpenFont( "../Fonts/Bebas-Regular.otf", 28 );
 
     return success;
@@ -212,7 +212,7 @@ void SDL::SDLWindow::renderText(float x, float y, float w, float h, std::string 
     }
     else
     {
-        //Render text
+        // Render text.
         SDL_Color textColor = { 0xFF, 0xFF, 0xFF };
         if( !gTextTexture->loadFromRenderedText( text, textColor, gFont ) )
         {
@@ -226,19 +226,19 @@ void SDL::SDLWindow::renderText(float x, float y, float w, float h, std::string 
 
 void SDL::SDLWindow::close()
 {
-    //Free loaded images
+    // Free loaded images.
     gSpriteSheetTexture->free();
 
     // Free text.
     gTextTexture->free();
 
-    //Destroy window
+    // Destroy window.
     SDL_DestroyRenderer( gRenderer );
     SDL_DestroyWindow( gWindow );
     gWindow = nullptr;
     gRenderer = nullptr;
 
-    //Quit SDL subsystems
+    // Quit SDL subsystems.
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
@@ -246,13 +246,13 @@ void SDL::SDLWindow::close()
 
 void SDL::SDLWindow::clearWindow()
 {
-    //Clear screen
+    // Clear screen.
     SDL_SetRenderDrawColor( gRenderer, 0x00, 0x00, 0x00, 0x00 );
     SDL_RenderClear( gRenderer );
 }
 
 void SDL::SDLWindow::updateWindow()
 {
-    //Update screen
+    // Update screen.
     SDL_RenderPresent( gRenderer );
 }

@@ -10,13 +10,13 @@
 namespace SDL {
     class SDLPlayerInput : public NONSDL::PlayerInput {
     public:
-        //Constructor
+        // Constructor.
         SDLPlayerInput();
 
-        //Destructor
+        // Destructor.
         ~SDLPlayerInput();
 
-        //Check input from player
+        // Check input from player.
         int CheckInput();
     };
 }

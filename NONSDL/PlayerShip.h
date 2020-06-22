@@ -9,13 +9,13 @@
 namespace NONSDL {
     class PlayerShip : public Entity {
     public:
-        //constructor
+        // Constructor.
         PlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
-        //destructor
+        // Destructor.
         virtual ~PlayerShip();
 
-        //make visible
+        // Make visible.
         virtual void visualize(Window* win) = 0;
     };
 }

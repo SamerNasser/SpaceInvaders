@@ -18,12 +18,13 @@
 namespace NONSDL {
     class AFactory {
     public:
+        // Destructor.
         virtual ~AFactory()
         {
 
         }
 
-        //Methods
+        // Methods.
         virtual PlayerShip* createPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed) = 0;
 
         virtual PlayerInput* createPlayerInput() = 0;

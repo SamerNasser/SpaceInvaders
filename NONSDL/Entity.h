@@ -19,6 +19,7 @@ namespace NONSDL {
         //destructor
         virtual ~Entity();
 
+        // Getters.
         float getX();
 
         float getY();
@@ -31,6 +32,7 @@ namespace NONSDL {
 
         float getHeight();
 
+        // Setters.
         void setX(float newX);
 
         void setY(float newY);
@@ -39,11 +41,13 @@ namespace NONSDL {
 
         void setYSpeed(float newDY);
 
+        // Update position.
         void updatePosition();
 
+        // Collision detection.
         bool collision(Entity* e);
 
-
+        // Make visible.
         virtual void visualize(Window* win) = 0;
 
 

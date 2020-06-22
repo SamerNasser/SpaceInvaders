@@ -11,13 +11,13 @@
 namespace NONSDL {
     class Projectile : public Entity {
     public:
-        //constructor
+        // Constructor.
         Projectile(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
-        //destructor
+        // Destructor.
         virtual ~Projectile();
 
-        //make visible
+        // Make visible.
         virtual void visualize(Window* win) = 0;
     };
 }

@@ -25,24 +25,34 @@ void NONSDL::Game::run()
     // Main loop flag.
     bool running = true;
 
+    // Flag for shooting bullet.
     bool shooting = false;
 
+    // Flag for winning.
     bool win = false;
 
+    // Flag for moving bonus item.
     bool bonusVisible = false;
 
+    // Set game state to start state.
     GameState gameState = START;
 
+    // Create vector of enemies.
     std::vector<Enemy*> enemies;
 
+    // Create vector of projectiles.
     std::vector<Projectile*> pj;
 
+    // Create a text string for text visualization.
     std::string text;
 
+    // Create a bonus entity for using NBonuses and PBonuses.
     BonusEntity* bonus;
 
+    // Make score variable.
     int score = 0;
 
+    // Make lives variable.
     int lives = 3;
 
     // Number of milliseconds between enemies shooting.
@@ -82,7 +92,7 @@ void NONSDL::Game::run()
     Timer* t4 = afact->createTimer();
 
 
-    // Create enemies.
+    // Fill enemy vector.
     for (int i = 0; i <= NONSDL::NUMBEROFCOLUMNS - 1; i++){
         for (int j = 2; j <= NONSDL::NUMBEROFROWS + 1; j++){
         enemies.push_back(afact->createEnemy(((i*(NONSDL::ENEMYWIDTH + 0.01))), ((j*(NONSDL::ENEMYHEIGHT + 0.01)) + 0.02), NONSDL::ENEMYWIDTH, NONSDL::ENEMYHEIGHT, NONSDL::ENEMYXSPEED, NONSDL::ENEMYYSPEED ));
@@ -108,7 +118,7 @@ void NONSDL::Game::run()
     // While application is running.
     while( running ) {
 
-//=====================================================================================================================
+//===================================================START STATE========================================================
 
         while(gameState == START){
 
@@ -135,7 +145,7 @@ void NONSDL::Game::run()
 
         }
 
-//=====================================================================================================================
+//==================================================PLAYING STATE=======================================================
 
         while (gameState == PLAYING) {
 
@@ -377,7 +387,7 @@ void NONSDL::Game::run()
             }
         }
 
-//=====================================================================================================================
+//=======================================================END STATE======================================================
 
         while(running && gameState == END){
 
@@ -410,6 +420,9 @@ void NONSDL::Game::run()
         }
     }
 
+//======================================================================================================================
+
+    // Delete all instances.
     delete ps;
     delete bul;
     for (const auto &p: pj){
@@ -427,7 +440,7 @@ void NONSDL::Game::run()
     delete window;
 }
 
-
+// Make sure there can only be one game instance.
 NONSDL::Game* NONSDL::Game::gameInstance(AFactory* afact)
 {
     if(game == NULL){

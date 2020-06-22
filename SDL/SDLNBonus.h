@@ -17,7 +17,7 @@ namespace SDL {
         // Destructor.
         ~SDLNBonus();
 
-        // Make visible.
+        // Methods.
         void visualize(NONSDL::Window* win);
 
         void disappear();

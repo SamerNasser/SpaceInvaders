@@ -17,40 +17,40 @@
 namespace SDL {
     class SDLTexture {
     public:
-        //Constructor
+        // Constructor.
         SDLTexture(SDL_Renderer* r);
 
-        //Destructor
+        // Destructor.
         ~SDLTexture();
 
-        //Loads image at specified path
+        // Loads image at specified path.
         bool loadFromFile(std::string path);
 
-        //Creates image from font string
+        // Creates image from font string.
         bool loadFromRenderedText( std::string textureText, SDL_Color textColor, TTF_Font* f );
 
-        //Deallocates texture
+        // Deallocates texture.
         void free();
 
-        //Renders texture at given point
+        // Renders texture at given point.
         void render(int x, int y, int w, int h, SDL_Rect *clip = nullptr, bool text = true);
 
 
     private:
-        //The actual hardware image texture
+        // The actual hardware image texture.
         SDL_Texture* mTexture;
 
-        //Image dimensions
+        // Image dimensions.
         int mWidth;
         int mHeight;
 
         // Renderer.
         SDL_Renderer* renderer;
 
-        //The actual hardware image texture
+        // The actual hardware image texture.
         SDL_Texture* nTexture;
 
-        //Text dimensions
+        // Text dimensions.
         int nWidth;
         int nHeight;
         TTF_Font * font;

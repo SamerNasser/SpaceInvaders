@@ -11,13 +11,13 @@
 namespace NONSDL {
     class BonusEntity : public Entity { 
     public:
-        //constructor
+        // Constructor.
         BonusEntity(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
-        //destructor
+        // Destructor.
         virtual ~BonusEntity();
 
-        //make visible
+        // Methods.
         virtual void visualize(Window* win) = 0;
 
         virtual void disappear() = 0;

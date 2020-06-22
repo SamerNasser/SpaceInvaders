@@ -13,13 +13,13 @@
 namespace SDL {
     class SDLFactory : public NONSDL::AFactory {
     public:
-        //constructor
+        // Constructor.
         SDLFactory();
 
-        //destructor
+        // Destructor.
         ~SDLFactory();
 
-        //Methods
+        // Methods.
         NONSDL::PlayerShip* createPlayerShip(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
         NONSDL::PlayerInput* createPlayerInput();

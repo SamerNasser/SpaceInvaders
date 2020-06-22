@@ -6,7 +6,7 @@
 
 SDL::SDLTexture::SDLTexture(SDL_Renderer* r )
 {
-    //Initialize
+    // Initialize.
     mTexture = nullptr;
     mWidth = 0;
     mHeight = 0;
@@ -16,19 +16,19 @@ SDL::SDLTexture::SDLTexture(SDL_Renderer* r )
 
 SDL::SDLTexture::~SDLTexture()
 {
-    //Deallocate
+    // Deallocate.
     free();
 }
 
 bool SDL::SDLTexture:: loadFromFile( std::string path )
 {
-    //Get rid of preexisting texture
+    // Get rid of preexisting texture.
     free();
 
-    //The final texture
+    // The final texture.
     SDL_Texture* newTexture = nullptr;
 
-    //Load image at specified path
+    // Load image at specified path.
     SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
     if( loadedSurface == nullptr )
     {
@@ -36,10 +36,10 @@ bool SDL::SDLTexture:: loadFromFile( std::string path )
     }
     else
     {
-        //Color key image
+        // Color key image.
         SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
 
-        //Create texture from surface pixels
+        // Create texture from surface pixels.
         newTexture = SDL_CreateTextureFromSurface( renderer, loadedSurface );
         if( newTexture == nullptr )
         {
@@ -47,28 +47,28 @@ bool SDL::SDLTexture:: loadFromFile( std::string path )
         }
         else
         {
-            //Get image dimensions
+            // Get image dimensions.
             mWidth = loadedSurface->w;
             mHeight = loadedSurface->h;
         }
 
-        //Get rid of old loaded surface
+        // Get rid of old loaded surface.
         SDL_FreeSurface( loadedSurface );
     }
 
-    //Return success
+    // Return success.
     mTexture = newTexture;
     return mTexture != nullptr;
 }
 
 bool SDL::SDLTexture::loadFromRenderedText( std::string textureText, SDL_Color textColor, TTF_Font* f )
 {
-    //Get rid of preexisting texture
+    // Get rid of preexisting texture.
     free();
 
     font = f;
 
-    //Render text surface
+    // Render text surface.
     SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
     if( textSurface == nullptr )
     {
@@ -76,7 +76,7 @@ bool SDL::SDLTexture::loadFromRenderedText( std::string textureText, SDL_Color t
     }
     else
     {
-        //Create texture from surface pixels
+        // Create texture from surface pixels.
         nTexture = SDL_CreateTextureFromSurface( renderer, textSurface );
         if( nTexture == nullptr )
         {
@@ -84,22 +84,22 @@ bool SDL::SDLTexture::loadFromRenderedText( std::string textureText, SDL_Color t
         }
         else
         {
-            //Get image dimensions
+            // Get image dimensions.
             nWidth = textSurface->w;
             nHeight = textSurface->h;
         }
 
-        //Get rid of old surface
+        // Get rid of old surface.
         SDL_FreeSurface( textSurface );
     }
 
-    //Return success
+    // Return success.
     return nTexture != nullptr;
 }
 
 void SDL::SDLTexture::free()
 {
-    //Free mTexture if it exists
+    // Free mTexture if it exists.
     if( mTexture != nullptr )
     {
         SDL_DestroyTexture( mTexture );
@@ -108,7 +108,7 @@ void SDL::SDLTexture::free()
         mHeight = 0;
     }
 
-    // Free nTexture if it exists
+    // Free nTexture if it exists.
     if( nTexture != nullptr )
     {
         SDL_DestroyTexture( mTexture );
@@ -121,16 +121,16 @@ void SDL::SDLTexture::free()
 
 void SDL::SDLTexture::render( int x, int y, int w, int h, SDL_Rect* clip, bool text )
 {
-    //Set rendering space and render to screen
+    // Set rendering space and render to screen.
     SDL_Rect renderQuad = { x, y, mWidth, mHeight };
 
-    //Set clip rendering dimensions
+    // Set clip rendering dimensions.
     {
         renderQuad.w = w;
         renderQuad.h = h;
     }
 
-    //Render to screen
+    // Render to screen.
     if (text) {
         SDL_RenderCopy( renderer, nTexture, clip, &renderQuad );
     }

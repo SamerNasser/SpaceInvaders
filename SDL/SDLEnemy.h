@@ -11,13 +11,13 @@
 namespace SDL {
     class SDLEnemy : public NONSDL::Enemy{
     public:
-        //constructor
+        // Constructor.
         SDLEnemy(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
-        //destructor
+        // Destructor.
         ~SDLEnemy();
 
-        //make visible
+        // Methods.
         void visualize(NONSDL::Window* win);
 
         void switchDirection();

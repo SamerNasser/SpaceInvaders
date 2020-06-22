@@ -12,19 +12,19 @@
 namespace SDL {
     class SDLSound : public NONSDL::Sound{
     public:
-        //Constructor
+        // Constructor.
         SDLSound();
 
-        //Destructor
+        // Destructor.
         ~SDLSound();
 
-        //Starts up SDL and creates window
+        // Starts up SDL and creates window.
         bool init();
 
-        //Loads media
+        // Loads media.
         bool loadMedia();
 
-        //Frees media and shuts down SDL
+        // Frees media and shuts down SDL.
         void close();
 
         void shootSound();

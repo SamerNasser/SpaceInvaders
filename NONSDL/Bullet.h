@@ -10,13 +10,13 @@
 namespace NONSDL {
     class Bullet : public Entity {
     public:
-        //constructor
+        // Constructor.
         Bullet(float xPos, float yPos, float w, float h, float xSpeed, float ySpeed);
 
-        //destructor
+        // Destructor.
         virtual ~Bullet();
 
-        //make visible
+        // Methods.
         virtual void visualize(Window* win) = 0;
 
         virtual void disappear() = 0;
